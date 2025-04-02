@@ -1,0 +1,82 @@
+/* 공통 스타일 */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    padding: 30px 0;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: #009639;
+    color: white;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    padding: 20px;
+}
+
+.btn-primary {
+    background-color: #009639;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0,150,57,0.2);
+}
+
+.btn-primary:hover {
+    background-color: #007a2e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,150,57,0.25);
+}
+
+.logo {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.progress {
+    height: 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.stats-container {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #f1f8ff;
+}
+
+/* 퀴즈 컨테이너 스타일 */
+.quiz-container {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+/* 결과 컨테이너 스타일 */
+.result-container {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+/* 차트 컨테이너 */
+.chart-container {
+    margin: 30px 0;
+    height: 300px;
+}

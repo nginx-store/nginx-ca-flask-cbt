@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}NGINX CBT 시험 결과{% endblock %}
+
+{% block extra_css %}
+<style>
+    .score-section {
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+    }
+    .passed {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+    .failed {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+    .certificate {
+        margin-top: 20px;
+        border: 2px dashed #007bff;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+    }
+    .question-result {
+        margin-bottom: 25px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .correct-answer {
+        background-color: #d4edda;
+        border-left: 5px solid #28a745;
+    }
+    .wrong-answer {
+        background-color: #f8d7da;
+        border-left: 5px solid #dc3545;
+    }
+    .result-icon {
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+    .correct-icon {
+        color: #28a745;
+    }
+    .wrong-icon {
+        color: #dc3545;
+    }
+    .explanation {
+        background-color: #f8f9fa;
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 8px;
+        border-left: 3px solid #6c757d;
+    }
+    .score-badge {
+        font-size: 1.2rem;
+        padding: 10px 15px;
+        margin-top: 10px;
+        display: inline-block;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="result-container">
+    <h1 class="display-5 fw-bold text-center text-primary mb-4">시험 결과</h1>
+    
+    <div class="score-section {{ 'passed' if percentage >= 70 else 'failed' }}">
+        <h2>{{ subject_name }} 시험</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h3 class="mb-3">총 점수: {{ score }}/{{ total }}</h3>
+                <h4>정답률: {{ percentage }}%</h4>
+                <span class="badge score-badge bg-{{ 'success' if percentage >= 70 else 'danger' }}">
+                    {{ '합격' if percentage >= 70 else '불합격' }}
+                </span>
+            </div>
+            <div class="col-md-6">
+                <div class="progress">
+                    <div class="progress-bar bg-{{ 'success' if percentage >= 70 else 'warning' if percentage >= 50 else 'danger' }}" 
+                         role="progressbar" 
+                         style="width: {{ percentage }}%" 
+                         aria-valuenow="{{ percentage }}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between small">
+                    <span>0%</span>
+                    <span>50%</span>
+                    <span>100%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">시험 통계</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <div class="p-3 bg-light rounded mb-2">
+                                    <h5>{{ score }}</h5>
+                                    <small>맞은 문제</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3 bg-light rounded mb-2">
+                                    <h5>{{ total - score }}</h5>
+                                    <small>틀린 문제</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3 bg-light rounded mb-2">
+                                    <h5>{{ results|selectattr('is_answered', 'equalto', true)|list|length }}</h5>
+                                    <small>답변 문제</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3 bg-light rounded mb-2">
+                                    <h5>{{ results|selectattr('is_answered', 'equalto', false)|list|length }}</h5>
+                                    <small>무응답 문제</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% if percentage >= 70 %}
+        <div class="certificate mt-4">
+            <h4>축하합니다! 합격하셨습니다.</h4>
+            <p>통과 기준: 70% 이상의 정답률</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="chart-container">
+        <canvas id="resultsChart"></canvas>
+    </div>
+    
+    <h3 class="mb-4">문제별 결과</h3>
+    
+    {% for res in results %}
+        <div class="question-result {{ 'correct-answer' if res.is_correct else 'wrong-answer' }}">
+            <h4>
+                {% if res.is_correct %}
+                <i class="fas fa-check-circle result-icon correct-icon"></i>
+                {% else %}
+                <i class="fas fa-times-circle result-icon wrong-icon"></i>
+                {% endif %}
+                문제 {{ loop.index }}
+            </h4>
+            
+            <p class="fw-bold">{{ res.question }}</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        <strong>당신의 답변:</strong> 
+                        {% if res.is_answered %}
+                            <span class="{{ 'text-success fw-bold' if res.is_correct else 'text-danger' }}">{{ res.user_answer_text }}</span>
+                        {% else %}
+                            <span class="text-danger">무응답</span>
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>정답:</strong> <span class="text-success fw-bold">{{ res.correct_answer_text }}</span></p>
+                </div>
+            </div>
+            
+            <div class="options-review mt-3">
+                <h5>선택지 분석:</h5>
+                <div class="row">
+                    {% for option in res.all_options %}
+                    <div class="col-md-6 mb-2">
+                        <div class="p-2 rounded 
+                            {% if loop.index0 == res.correct_answer %}
+                                bg-success text-white
+                            {% elif loop.index0 == res.user_answer %}
+                                bg-danger text-white
+                            {% else %}
+                                bg-light
+                            {% endif %}">
+                            {{ option }}
+                            {% if loop.index0 == res.correct_answer %}
+                                <i class="fas fa-check float-end"></i>
+                            {% elif loop.index0 == res.user_answer and not res.is_correct %}
+                                <i class="fas fa-times float-end"></i>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="explanation mt-3">
+                <p><i class="fas fa-info-circle"></i> <strong>설명:</strong> {{ res.explanation }}</p>
+                {% if not res.is_correct %}
+                <div class="alert alert-info mt-2">
+                    <i class="fas fa-lightbulb"></i> <strong>팁:</strong> 
+                    {% if res.is_answered %}
+                        정답은 "{{ res.correct_answer_text }}"입니다. 이 부분을 복습해보세요.
+                    {% else %}
+                        이 문제에 답변하지 않았습니다. 다음 시험에서는 모든 문항에 답변해보세요.
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    
+    <div class="btn-group d-flex justify-content-center">
+        <a href="{{ url_for('quiz.quiz', subject=subject) }}" class="btn btn-primary me-2">
+            <i class="fas fa-redo"></i> 다시 풀기
+        </a>
+        <a href="{{ url_for('quiz.index') }}" class="btn btn-secondary">
+            <i class="fas fa-home"></i> 메인으로
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // 결과 차트 생성
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        const correct = {{ score }};
+        const incorrect = {{ total - score }};
+        
+        const chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['정답', '오답'],
+                datasets: [{
+                    data: [correct, incorrect],
+                    backgroundColor: ['#28a745', '#dc3545'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw || 0;
+                                const total = correct + incorrect;
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ${value}문제 (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

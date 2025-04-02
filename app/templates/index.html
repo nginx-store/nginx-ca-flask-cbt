@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}NGINX CBT 문제풀이{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h1 class="display-4 fw-bold text-primary">NGINX CBT 문제풀이</h1>
+    <p class="lead text-secondary">NGINX 자격증 준비를 위한 모의 CBT 시험</p>
+</div>
+
+{% if recent_scores %}
+<div class="stats-container mb-4">
+    <h4 class="mb-3">최근 성적</h4>
+    <div class="row">
+        {% for score in recent_scores %}
+        <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <span>{{ score.subject_name if score.subject_name else score.subject }} - {{ score.date }}</span>
+                <span class="badge bg-{{ 'success' if score.percentage >= 70 else 'warning' if score.percentage >= 50 else 'danger' }}">
+                    {{ score.score }}/{{ score.total }} ({{ score.percentage }}%)
+                </span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-{{ 'success' if score.percentage >= 70 else 'warning' if score.percentage >= 50 else 'danger' }}" 
+                     role="progressbar" 
+                     style="width: {{ score.percentage }}%" 
+                     aria-valuenow="{{ score.percentage }}" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title mb-0">시험 과목 선택</h2>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="mt-3">
+            <div class="mb-4">
+                <select name="subject" class="form-select form-select-lg mb-3">
+                    {% for subject in subjects %}
+                    <option value="{{ subject.code }}">{{ subject.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg px-5">시험 시작하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

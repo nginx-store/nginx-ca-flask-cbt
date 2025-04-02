@@ -1,0 +1,50 @@
+# Python/Flask 가상 환경
+venv/
+env/
+ENV/
+
+# Python 캐시 파일
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Flask 환경 변수와 인스턴스 폴더
+instance/
+.env
+.flaskenv
+
+# 로그 파일
+*.log
+
+# 개발 환경 설정 파일
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+.coverage
+htmlcov/
+.pytest_cache/
+.hypothesis/
+
+# 데이터베이스 파일
+*.db
+*.sqlite
+*.sqlite3
+
+# 빌드 폴더
+build/
+dist/
+*.egg-info/
+*.egg
+
+# 임시 파일
+tmp/
+temp/
+
+# 백업 파일
+*.bak
+*.swp
+*~
