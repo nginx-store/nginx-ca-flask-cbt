@@ -108,14 +108,8 @@ nginx-ca-flask-cbt/
 
 ## 개발자 정보
 
-- 개발: 홍길동
-- 이메일: example@example.com
-- 웹사이트: https://example.com
-
-## 알려진 이슈
-
-- 현재 버전에서는 사용자 계정 기능이 지원되지 않습니다.
-- 일부 브라우저에서 타이머 표시에 문제가 있을 수 있습니다.
+- 개발: **[DevBinx](https://github.com/DevBinx)**
+- 이메일: devbinx.dev@gmail.com or jbkim@itian.co.kr
 
 ## 변경 로그
 
@@ -123,3 +117,7 @@ nginx-ca-flask-cbt/
 - 초기 릴리스
 - 기본 퀴즈 기능 구현
 - 결과 저장 및 분석 기능
+
+### 버전 1.0.1 (2025-04-08)
+- F5N1 문제 추가 (10문제)
+- 퀴즈 도중 홈으로 돌아가는 버튼 추가
