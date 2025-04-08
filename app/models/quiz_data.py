@@ -9,562 +9,1270 @@
 quiz_data = {
     "F5N1": [
         {
-            "question": "NGINX는 기본적으로 어떤 유형의 소프트웨어인가?",
-            "options": ["데이터베이스 서버", "이메일 서버", "웹 서버 및 리버스 프록시 서버", "파일 동기화 도구", "컨테이너 오케스트레이터"],
-            "answer": 2,
-            "explanation": "NGINX는 고성능 웹 서버이자 리버스 프록시로 설계되었습니다."
-        },
-        {
-            "question": "NGINX는 기본적으로 어떤 아키텍처를 기반으로 동작하는가?",
-            "options": ["스레드 기반 아키텍처", "다중 마스터 구조", "이벤트 기반, 비동기 아키텍처", "블로킹 I/O 기반 아키텍처", "마이크로커널 구조"],
-            "answer": 2,
-            "explanation": "이벤트 기반 아키텍처 덕분에 NGINX는 고성능을 유지하면서 수천 개의 연결을 처리할 수 있습니다."
-        },
-        {
-            "question": "다음 중 NGINX의 기본 프로세스 구조로 올바른 것은?",
-            "options": ["워커만 실행되고 마스터는 존재하지 않는다", "하나의 마스터 프로세스와 여러 워커 프로세스로 구성", "모든 요청은 하나의 마스터 프로세스에서 처리됨", "프로세스 대신 스레드를 사용", "클라이언트마다 새로운 프로세스 생성"],
-            "answer": 1,
-            "explanation": "마스터는 설정 및 워커 관리, 워커는 실제 요청 처리 역할을 합니다."
-        },
-        {
-            "question": "NGINX에서 설정 변경 후 서비스 재시작 없이 적용할 수 있는 명령은?",
-            "options": ["systemctl restart nginx", "nginx -q", "nginx -s reload", "nginx --reapply", "nginx -refresh"],
-            "answer": 2,
-            "explanation": "nginx -s reload는 중단 없이 설정을 다시 로드합니다."
-        },
-        {
-            "question": "다음 중 NGINX의 대표적인 사용 사례가 아닌 것은?",
-            "options": ["정적 웹 콘텐츠 제공", "리버스 프록시 서버", "API 게이트웨이 역할", "패킷 스니핑", "로드 밸런싱"],
-            "answer": 3,
-            "explanation": "패킷 스니핑은 보안 분석 도구의 역할이며, NGINX의 기능이 아닙니다."
-        },
-        {
-            "question": "NGINX가 리버스 프록시로 동작할 때의 기본 흐름은?",
-            "options": ["클라이언트 → 프록시 → 백엔드 서버 → 프록시 → 클라이언트", "클라이언트 → 로컬 파일 시스템 → 응답", "클라이언트 → 백엔드 서버 → 로컬 캐시", "클라이언트 → 방화벽 → 스위치 → 서버", "프록시가 직접 응답을 반환하지 않음"],
-            "answer": 0,
-            "explanation": "리버스 프록시는 중간에서 요청을 전달하고 응답을 다시 클라이언트로 반환합니다."
-        },
-        {
-            "question": "NGINX의 설정 파일 확장자는 일반적으로 무엇인가?",
-            "options": [".json", ".yaml", ".conf", ".ini", ".xml"],
-            "answer": 2,
-            "explanation": "NGINX 설정 파일은 대부분 .conf 확장자를 사용합니다."
-        },
-        {
-            "question": "NGINX는 어떤 운영 체제에서 가장 일반적으로 사용되는가?",
-            "options": ["Windows 98", "macOS", "Linux", "DOS", "Android"],
-            "answer": 2,
-            "explanation": "Linux 환경에서 가장 널리 배포되며, 패키지 매니저를 통한 설치가 용이합니다."
-        },
-        {
-            "question": "NGINX 로그 중 오류 메시지가 기록되는 파일은?",
-            "options": ["/var/log/nginx/debug.log", "/etc/nginx/access.log", "/var/log/nginx/error.log", "/var/log/messages", "/usr/nginx/request.log"],
-            "answer": 2,
-            "explanation": "error.log는 설정 오류, 런타임 문제 등의 진단 정보를 제공합니다."
-        },
-        {
-            "question": "다음 중 NGINX에서 서버 블록은 어떤 역할을 하는가?",
-            "options": ["이벤트 루프 처리", "클라이언트 요청을 모니터링", "포트를 바인딩하고 도메인 별 처리", "커널에 설정을 전달", "네트워크 인터페이스 정의"],
-            "answer": 2,
-            "explanation": "server 블록은 가상 호스트처럼 도메인/포트 기반 요청 처리 단위입니다."
-        },
-        {
-            "question": "NGINX에서 worker_processes auto; 설정의 의미는?",
-            "options": ["항상 하나의 워커만 실행됨", "CPU 코어 수와 무관하게 워커 8개 실행", "CPU 코어 수만큼 워커 프로세스 자동 생성", "워커 프로세스가 스레드로 대체됨", "클라이언트 수에 따라 워커 수 동적 조정"],
-            "answer": 2,
-            "explanation": "auto는 머신의 CPU 코어 수를 감지하여 그에 맞게 워커 프로세스를 생성합니다."
-        },
-        {
-            "question": "NGINX의 기본 동작 포트는 무엇인가?",
-            "options": ["22", "443", "3306", "80", "21"],
-            "answer": 3,
-            "explanation": "HTTP의 기본 포트는 80이며, NGINX는 기본적으로 해당 포트에서 시작됩니다."
-        },
-        {
-            "question": "NGINX의 기본 리스닝 주소는 무엇인가?",
-            "options": ["0.0.0.0", "127.0.0.1", "::1", "192.168.0.1", "localhost.localdomain"],
-            "answer": 0,
-            "explanation": "0.0.0.0은 모든 인터페이스에서 요청을 수신한다는 의미입니다."
-        },
-        {
-            "question": "NGINX의 events {} 블록은 주로 무엇을 정의하는가?",
-            "options": ["로그 레벨 설정", "서버 이름 설정", "접속 이벤트 처리 방식", "압축 방식 설정", "MIME 타입 정의"],
-            "answer": 2,
-            "explanation": "events 블록에서는 워커당 최대 연결 수 등 이벤트 관련 설정을 합니다."
-        },
-        {
-            "question": "nginx.conf의 최상위 블록은 어디인가?",
-            "options": ["server", "location", "http", "main", "events"],
-            "answer": 3,
-            "explanation": "main은 설정 파일에서 가장 상위 레벨에 위치하며, http, events 블록을 포함합니다."
-        },
-        {
-            "question": "NGINX는 기본적으로 어떤 방식으로 요청을 처리하는가?",
-            "options": ["병렬 처리 기반 스레드", "이벤트 기반 논블로킹 방식", "요청당 프로세스 생성 방식", "요청당 DB 연결 방식", "파이썬 코루틴 기반"],
-            "answer": 1,
-            "explanation": "NGINX는 이벤트 루프 기반으로 비동기 논블로킹 처리 방식을 사용합니다."
-        },
-        {
-            "question": "다음 중 location 블록의 주요 기능은?",
-            "options": ["이벤트 루프 정의", "특정 URI에 대한 요청 처리 방식 지정", "서버 이름 지정", "접근 로그 비활성화", "연결 수 제한"],
-            "answer": 1,
-            "explanation": "location은 URI 패턴에 따라 요청을 다르게 처리할 수 있도록 합니다."
-        },
-        {
-            "question": "NGINX의 모듈 중 정적 콘텐츠 제공과 가장 관련 있는 모듈은?",
-            "options": ["ngx_http_gzip_module", "ngx_http_proxy_module", "ngx_http_core_module", "ngx_stream_core_module", "ngx_http_rewrite_module"],
-            "answer": 2,
-            "explanation": "core_module은 정적 파일 제공, 경로 매칭 등 기본 웹 서버 기능을 담당합니다."
-        },
-        {
-            "question": "NGINX에서 로그 레벨 중 가장 상세한 디버깅 수준은?",
-            "options": ["info", "warn", "error", "notice", "debug"],
-            "answer": 4,
-            "explanation": "debug는 가장 상세한 로깅 수준이며, 성능에 영향을 줄 수 있습니다."
-        },
-        {
-            "question": "다음 중 NGINX의 대표적인 특징이 아닌 것은?",
-            "options": ["낮은 메모리 사용량", "높은 연결 처리량", "모듈 기반 확장성", "자동 DB 스키마 생성", "정적 및 동적 콘텐츠 지원"],
-            "answer": 3,
-            "explanation": "NGINX는 DB 스키마를 생성하지 않으며, DB와 직접적인 관련이 없습니다."
-        },
-        {
-            "question": "access_log와 error_log의 차이는 무엇인가?",
-            "options": ["전자는 요청 로그, 후자는 오류 로그", "전자는 압축 로그, 후자는 원본 로그", "전자는 SSL 로그, 후자는 캐시 로그", "두 로그는 동일한 파일에 기록됨", "둘 다 바이너리 로그임"],
-            "answer": 0,
-            "explanation": "access_log는 요청 성공/실패 여부 포함, error_log는 에러 발생 시 상세 정보 기록합니다."
-        },
-        {
-            "question": "NGINX에서 도메인별 가상 호스트 구성을 위해 사용하는 블록은?",
-            "options": ["location", "map", "http", "server", "stream"],
-            "answer": 3,
-            "explanation": "여러 도메인을 하나의 NGINX 인스턴스에서 처리하려면 각각의 server 블록을 생성합니다."
-        },
-        {
-            "question": "NGINX 설정에서 변수명은 일반적으로 어떤 접두어를 사용하는가?",
-            "options": ["@", ":", "$", "&", "*"],
-            "answer": 2,
-            "explanation": "$는 NGINX 설정에서 변수 사용을 나타냅니다. 예: $remote_addr."
-        },
-        {
-            "question": "다음 중 리버스 프록시로 동작하기 위해 반드시 필요한 디렉티브는?",
-            "options": ["root", "proxy_pass", "alias", "gzip", "ssl_certificate_key"],
-            "answer": 1,
-            "explanation": "proxy_pass는 클라이언트 요청을 다른 서버로 전달하는 리버스 프록시의 핵심입니다."
-        },
-        {
-            "question": "NGINX는 어떤 형태의 HTTP 요청 멀티플렉싱을 기본 지원하지 않는가?",
-            "options": ["HTTP/1.1", "HTTP/2", "Keepalive", "HTTP pipelining", "HTTP/3 (QUIC)"],
-            "answer": 4,
-            "explanation": "HTTP/3은 NGINX OSS에서 기본적으로 지원되지 않으며 별도 빌드가 필요합니다."
-        },
-        {
-            "question": "NGINX 설정에서 서버 이름을 지정하는 디렉티브는?",
-            "options": ["domain_name", "listen_name", "server_name", "host_match", "url_host"],
-            "answer": 2,
-            "explanation": "server_name은 도메인별 요청을 구분하는 데 사용됩니다."
-        },
-        {
-            "question": "NGINX에서 클라이언트 요청을 제한하는 기능은?",
-            "options": ["gzip_level", "limit_req", "ssl_verify", "worker_rlimit", "retry_policy"],
-            "answer": 1,
-            "explanation": "limit_req는 특정 시간 내 요청 수 제한에 사용됩니다."
-        },
-        {
-            "question": "NGINX는 어떤 방식으로 설정 오류를 알려주는가?",
-            "options": ["클라이언트에게 500 에러 전송", "설정 파일 내 오류 자동 수정", "nginx -t로 오류 표시", "웹 UI에서 팝업", "로그를 외부로 전송"],
-            "answer": 2,
-            "explanation": "nginx -t는 설정 오류 여부를 콘솔에 표시해줍니다."
-        },
-        {
-            "question": "다음 중 NGINX가 사용하는 주요 구성 요소가 아닌 것은?",
-            "options": ["nginx.conf", "server", "location", "pipeline", "events"],
-            "answer": 3,
-            "explanation": "pipeline은 HTTP 기능 중 하나지만, NGINX 구성 디렉티브나 블록은 아닙니다."
-        },
-        {
-            "question": "다음 중 NGINX의 설정 파일을 다시 적용하는 명령은?",
-            "options": ["nginx -s reload", "nginx --start", "systemctl restart nginx", "nginx -c", "reload-nginx"],
-            "answer": 0,
-            "explanation": "nginx -s reload는 서비스 재시작 없이 설정을 다시 적용합니다."
-        }
+    "question": "NGINX를 웹 서버로 사용할 때 가장 일반적인 용도는 무엇인가?",
+    "options": [
+      "정적 파일 제공",
+      "데이터베이스 캐싱",
+      "API 라우팅",
+      "외부 인증 처리",
+      "WAF 보호"
+    ],
+    "answer": 0,
+    "explanation": "NGINX는 웹 서버로서 이미지, HTML, CSS, JS 같은 정적 콘텐츠를 빠르게 제공하는 데 가장 많이 사용된다."
+  },
+  {
+    "question": "NGINX에서 nginx.conf 파일의 기본 위치는 어디인가?",
+    "options": [
+      "/etc/nginx/nginx.conf",
+      "/usr/local/nginx/conf.d/nginx.conf",
+      "/etc/nginx/sites-available/default",
+      "/var/www/html/index.conf",
+      "/nginx/main.conf"
+    ],
+    "answer": 0,
+    "explanation": "대부분의 Linux 배포판에서 NGINX의 기본 설정 파일은 /etc/nginx/nginx.conf에 위치한다."
+  },
+  {
+    "question": "NGINX가 공유 메모리 영역을 사용하는 주된 이유는 무엇인가?",
+    "options": [
+      "워커 프로세스 간 데이터 공유",
+      "클라이언트 요청 로깅",
+      "모듈 간 통신",
+      "SSL 세션 캐시 저장",
+      "사용자 인증 처리"
+    ],
+    "answer": 0,
+    "explanation": "NGINX는 워커 프로세스 간에 세션 정보나 상태를 공유하기 위해 shared memory zone을 사용한다."
+  },
+  {
+    "question": "NGINX가 특정 사용자로 실행되도록 설정하려면 어느 지시어를 사용해야 하는가?",
+    "options": [
+      "user",
+      "worker_processes",
+      "listen",
+      "server_name",
+      "location"
+    ],
+    "answer": 0,
+    "explanation": "user 지시어는 NGINX가 실행될 때 사용할 사용자 계정을 정의한다."
+  },
+  {
+    "question": "다음 중 NGINX를 API Gateway로 사용할 수 있는 기능은?",
+    "options": [
+      "URI 기반 라우팅",
+      "이미지 최적화",
+      "파일 압축",
+      "DNS 쿼리 처리",
+      "파일 시스템 접근 제어"
+    ],
+    "answer": 0,
+    "explanation": "API Gateway의 주요 기능은 URI에 따라 백엔드 API로 요청을 라우팅하는 것이다."
+  },
+  {
+    "question": "NGINX에서 include 지시어는 어떤 역할을 하는가?",
+    "options": [
+      "외부 설정 파일을 현재 구성에 병합한다",
+      "로깅 형식을 설정한다",
+      "정적 파일을 서비스한다",
+      "프로세스 수를 설정한다",
+      "캐시 정책을 설정한다"
+    ],
+    "answer": 0,
+    "explanation": "include 지시어는 다른 구성 파일을 불러와 현재 구성에 포함시킨다."
+  },
+  {
+    "question": "NGINX가 리버스 프록시로 사용될 때 클라이언트 요청은 어떻게 처리되는가?",
+    "options": [
+      "직접 응답을 반환",
+      "백엔드 서버로 전달",
+      "디스크에 로그 저장",
+      "요청을 무시",
+      "사용자에게 오류 반환"
+    ],
+    "answer": 1,
+    "explanation": "리버스 프록시는 클라이언트의 요청을 받아 백엔드 서버에 전달하고, 해당 응답을 다시 클라이언트에 반환한다."
+  },
+  {
+    "question": "다음 중 conf.d 디렉토리는 어떤 역할을 하는가?",
+    "options": [
+      "로그 파일 저장",
+      "개별 서버 블록 설정 포함",
+      "정적 파일 저장",
+      "SSL 인증서 저장",
+      "캐시 데이터 저장"
+    ],
+    "answer": 1,
+    "explanation": "conf.d 디렉토리는 nginx.conf의 include 지시어를 통해 개별 가상 호스트나 서버 블록을 정의하는 설정 파일들을 저장한다."
+  },
+  {
+    "question": "NGINX의 워커 프로세스가 특정 사용자로 실행되도록 하기 위해서는 무엇이 요구되는가?",
+    "options": [
+      "root 권한",
+      "master 프로세스가 먼저 해당 유저로 권한을 하향시켜야 함",
+      "모든 유저에 777 권한 부여",
+      "SSL 인증서 등록",
+      "실행 시에만 지정 가능"
+    ],
+    "answer": 1,
+    "explanation": "마스터 프로세스는 root로 실행되며 이후 워커 프로세스에 대해 설정된 user로 권한을 낮춘다."
+  },
+  {
+    "question": "NGINX의 설정 파일에서 상위 블록에서 정의된 지시어가 하위 블록에서 덮어쓰기되는 것을 무엇이라 하는가?",
+    "options": [
+      "설정 리셋",
+      "지시어 오버라이드",
+      "설정 상속 차단",
+      "사용자 컨텍스트 변경",
+      "요청 리디렉션"
+    ],
+    "answer": 1,
+    "explanation": "하위 블록에서 상위 지시어를 다시 정의하면 기존 값을 덮어쓰게 되며 이를 오버라이드(override)라고 한다."
+  },
+  {
+    "question": "공유 메모리 zone을 사용하는 대표적인 NGINX 모듈은 무엇인가?",
+    "options": [
+      "access_log",
+      "limit_conn",
+      "server_name",
+      "proxy_pass",
+      "rewrite"
+    ],
+    "answer": 1,
+    "explanation": "limit_conn 모듈은 연결 수 제한을 위해 shared memory zone을 사용한다."
+  },
+  {
+    "question": "다음 중 NGINX에서 캐싱 솔루션으로 사용될 때 필요한 모듈은?",
+    "options": [
+      "stream",
+      "proxy_cache",
+      "mail",
+      "limit_req",
+      "map"
+    ],
+    "answer": 1,
+    "explanation": "proxy_cache는 응답을 캐시에 저장하여 같은 요청이 들어왔을 때 빠르게 반환할 수 있도록 한다."
+  },
+  {
+    "question": "NGINX가 로드 밸런서로 작동할 때 사용하는 주요 지시어는?",
+    "options": [
+      "try_files",
+      "rewrite",
+      "upstream",
+      "gzip",
+      "server_tokens"
+    ],
+    "answer": 2,
+    "explanation": "upstream 블록은 여러 백엔드 서버를 정의하여 NGINX가 로드 밸런싱을 수행할 수 있게 한다."
+  },
+  {
+    "question": "다음 중 설정 파일 병합 순서에 가장 부합하는 것은?",
+    "options": [
+      "include 디렉토리 > nginx.conf > default.conf",
+      "default.conf > include 디렉토리 > nginx.conf",
+      "nginx.conf → include 된 파일 순서대로",
+      "conf.d > nginx.conf > sites-enabled",
+      "실행 시 랜덤"
+    ],
+    "answer": 2,
+    "explanation": "설정은 nginx.conf에서 먼저 읽히고, 그 안에서 include 지시어에 정의된 순서대로 병합된다."
+  },
+  {
+    "question": "다음 중 리버스 프록시 사용 시 클라이언트 IP를 전달하기 위해 자주 사용하는 헤더는?",
+    "options": [
+      "Host",
+      "Accept",
+      "X-Forwarded-For",
+      "Authorization",
+      "Cache-Control"
+    ],
+    "answer": 2,
+    "explanation": "X-Forwarded-For 헤더는 리버스 프록시 뒤에 위치한 클라이언트의 실제 IP 주소를 전달하는 데 사용된다."
+  },
+  {
+    "question": "NGINX에서 shared memory zone의 이름과 크기를 지정하는 예시는?",
+    "options": [
+      "log_format main",
+      "server_name example.com;",
+      "zone=backend:10m",
+      "listen 80;",
+      "gzip on;"
+    ],
+    "answer": 2,
+    "explanation": "shared memory zone은 예를 들어 zone=backend:10m처럼 이름과 메모리 크기를 명시한다."
+  },
+  {
+    "question": "NGINX의 기본 마스터 프로세스는 어떤 권한으로 실행되는가?",
+    "options": [
+      "nobody",
+      "nginx",
+      "root",
+      "admin",
+      "user"
+    ],
+    "answer": 2,
+    "explanation": "마스터 프로세스는 시스템 리소스를 제어하기 위해 root 권한으로 실행되며, 워커는 하향 권한으로 실행된다."
+  },
+  {
+    "question": "NGINX에서 캐시 저장소를 사용하는 설정 블록은?",
+    "options": [
+      "log_format",
+      "events",
+      "proxy_cache_path",
+      "http2_push",
+      "fastcgi_pass"
+    ],
+    "answer": 2,
+    "explanation": "proxy_cache_path 지시어는 NGINX의 캐시 저장소 경로, 키, 크기 등을 지정하는 데 사용된다."
+  },
+  {
+    "question": "다음 중 NGINX의 로드 밸런싱 방법이 아닌 것은?",
+    "options": [
+      "round-robin",
+      "least_conn",
+      "ip_hash",
+      "dns_hash",
+      "random"
+    ],
+    "answer": 3,
+    "explanation": "NGINX는 round-robin, least_conn, ip_hash, random과 같은 로드 밸런싱 방식을 지원하지만 dns_hash는 지원하지 않는다."
+  },
+  {
+    "question": "다음 중 user nginx; 설정이 수행하는 역할은?",
+    "options": [
+      "클라이언트 권한 검증",
+      "로그 파일 권한 설정",
+      "upstream 서버 지정",
+      "워커 프로세스의 실행 사용자 지정",
+      "캐시 디렉토리 지정"
+    ],
+    "answer": 3,
+    "explanation": "user 지시어는 마스터 프로세스가 포크한 워커 프로세스가 어떤 사용자 권한으로 실행될지를 설정한다."
+  },
+  {
+    "question": "다음 중 NGINX를 API Gateway로 구성할 때 가장 중요한 요소는?",
+    "options": [
+      "access_log 경로",
+      "캐시 유효 기간",
+      "HTTP 버전",
+      "백엔드 API 경로에 따른 요청 분기 처리",
+      "gzip 압축 설정"
+    ],
+    "answer": 3,
+    "explanation": "API Gateway는 다양한 API 경로에 따라 요청을 백엔드에 분기 라우팅하는 것이 핵심이다."
+  },
+  {
+    "question": "다음 중 NGINX 설정에서 directive를 하위 블록에서 다시 정의하면 어떻게 되는가?",
+    "options": [
+      "오류 발생",
+      "병합",
+      "무시됨",
+      "기존 값을 덮어씀",
+      "상속 유지"
+    ],
+    "answer": 3,
+    "explanation": "directive는 하위 블록에서 다시 정의되면 상위 블록의 값을 덮어쓰는 방식으로 작동한다."
+  },
+  {
+    "question": "NGINX의 shared memory zone에 대한 설명으로 옳은 것은?",
+    "options": [
+      "보안을 위한 암호화 저장소이다",
+      "워커 프로세스별 독립된 메모리 영역이다",
+      "오류 로그 저장소이다",
+      "여러 워커가 공통 데이터를 접근할 수 있도록 공유되는 메모리 영역이다",
+      "파일 캐시 백업 저장소이다"
+    ],
+    "answer": 3,
+    "explanation": "shared memory zone은 여러 워커 간 공통 데이터를 효율적으로 공유하기 위해 사용된다."
+  },
+  {
+    "question": "다음 중 NGINX 캐시와 관련 없는 설정은?",
+    "options": [
+      "proxy_cache_path",
+      "proxy_cache_key",
+      "proxy_cache_valid",
+      "proxy_pass_request_body",
+      "proxy_cache_use_stale"
+    ],
+    "answer": 3,
+    "explanation": "proxy_pass_request_body는 요청 본문 처리와 관련된 설정이며, 캐시 설정과는 관련이 없다."
+  },
+  {
+    "question": "다음 중 NGINX 구성에서 사용자 권한과 가장 관련이 적은 항목은?",
+    "options": [
+      "user directive",
+      "access permissions on log directory",
+      "파일의 실행 권한 설정",
+      "프로세스 권한 분리",
+      "listen directive"
+    ],
+    "answer": 4,
+    "explanation": "listen directive는 포트를 지정하며 사용자 권한과는 관련이 적다."
+  },
+  {
+    "question": "다음 중 reverse proxy 기능을 가장 잘 설명하는 것은?",
+    "options": [
+      "HTML 페이지 생성",
+      "클라이언트 IP 숨김",
+      "데이터베이스 연결",
+      "백엔드 서버 요청 중계",
+      "디스크 캐시 무효화"
+    ],
+    "answer": 3,
+    "explanation": "reverse proxy는 클라이언트 요청을 받아 백엔드 서버로 전달하고 응답을 반환하는 중계 역할을 수행한다."
+  },
+  {
+    "question": "다음 중 /etc/nginx/conf.d/에 저장되는 설정 파일의 특징은?",
+    "options": [
+      "nginx.conf와 동일한 우선순위를 갖는다",
+      "자동으로 실행되지 않는다",
+      "include 되지 않으면 무시된다",
+      "nginx.conf에 의해 수동으로 include 해야 한다",
+      "기본적으로 nginx.conf에서 include 되어 있다"
+    ],
+    "answer": 4,
+    "explanation": "대부분의 배포판에서 nginx.conf는 conf.d/*.conf를 기본적으로 include 하도록 되어 있다."
+  },
+  {
+    "question": "다음 중 NGINX를 캐시 서버로 사용할 때 가장 중요한 요소는?",
+    "options": [
+      "IP 주소",
+      "SSL 설정",
+      "load balancing algorithm",
+      "static file 경로",
+      "cache key 설정"
+    ],
+    "answer": 4,
+    "explanation": "캐시 키는 어떤 요청이 동일한 것으로 간주될지를 결정하는 핵심 요소로, 캐시 서버 운영에 매우 중요하다."
+  },
+  {
+    "question": "shared memory zone을 설정하지 않으면 어떤 일이 발생할 수 있는가?",
+    "options": [
+      "gzip 오류",
+      "사용자 인증 실패",
+      "서버 블록 무시",
+      "여러 워커 간 데이터 불일치",
+      "SSL 핸드쉐이크 실패"
+    ],
+    "answer": 3,
+    "explanation": "shared memory zone이 없으면 여러 워커 프로세스 간에 일관된 데이터를 공유하지 못하게 되어 데이터 불일치 문제가 발생할 수 있다."
+  },
+  {
+    "question": "다음 중 NGINX의 load balancer 구성 시 필수 설정이 아닌 것은?",
+    "options": [
+      "upstream 블록",
+      "server 블록",
+      "proxy_pass",
+      "zone",
+      "ssl_certificate"
+    ],
+    "answer": 4,
+    "explanation": "ssl_certificate는 HTTPS 설정 시 필요하지만, 일반적인 로드 밸런싱 설정에는 필수가 아니다."
+  }
     ],
     "F5N2": [
         {
-            "question": "NGINX 설정을 변경한 후 오류 여부를 확인하는 명령은?",
-            "options": ["nginx --check-config", "nginx -t", "nginx -c", "nginx -v", "nginx -d"],
-            "answer": 1,
-            "explanation": "nginx -t는 설정 구문의 유효성을 테스트합니다."
-        },
-        {
-            "question": "다음 중 NGINX 설정의 최상위 블록은?",
-            "options": ["http", "server", "location", "events", "main"],
-            "answer": 4,
-            "explanation": "main 컨텍스트는 http, events, stream 등을 포함하는 최상위 블록입니다."
-        },
-        {
-            "question": "/etc/nginx/conf.d/*.conf 파일을 병합하려면 어떤 디렉티브를 사용해야 하는가?",
-            "options": ["source", "load", "include", "import", "append"],
-            "answer": 2,
-            "explanation": "include 디렉티브는 외부 설정 파일을 병합할 때 사용됩니다."
-        },
-        {
-            "question": "NGINX에서 가상 호스트를 정의할 때 사용하는 블록은?",
-            "options": ["location", "map", "server", "events", "proxy"],
-            "answer": 2,
-            "explanation": "server 블록은 특정 포트/도메인에 대해 처리할 서버 단위를 정의합니다."
-        },
-        {
-            "question": "다음 중 HTTP 요청 URI 패턴에 따라 처리 방식을 달리하는 블록은?",
-            "options": ["server", "http", "location", "limit_req", "log_format"],
-            "answer": 2,
-            "explanation": "location 블록은 URI 경로별로 처리 로직을 정의합니다."
-        },
-        {
-            "question": "NGINX 설정에서 listen 443 ssl;을 사용하려면 반드시 필요한 설정은?",
-            "options": ["gzip 설정", "캐시 경로", "TLS 인증서 및 키", "HTTP 리디렉션", "루트 경로"],
-            "answer": 2,
-            "explanation": "SSL/TLS 설정을 위해서는 ssl_certificate와 ssl_certificate_key가 필요합니다."
-        },
-        {
-            "question": "/etc/nginx/mime.types는 무엇을 정의하는가?",
-            "options": ["서버별 접근 제한", "파일 확장자와 콘텐츠 타입 매핑", "로그 포맷", "오류 페이지 경로", "캐시 정책"],
-            "answer": 1,
-            "explanation": "mime.types 파일은 파일 확장자와 MIME 타입 간의 관계를 설정합니다."
-        },
-        {
-            "question": "다음 중 설정 파일 내 변수 사용 형식으로 올바른 것은?",
-            "options": ["%remote_addr", "@remote_addr", "$remote_addr", "!remote_addr", "#remote_addr"],
-            "answer": 2,
-            "explanation": "NGINX에서 변수는 $ 접두어로 사용됩니다."
-        },
-        {
-            "question": "설정 파일 병합 시, include *.conf; 형식에서 파일 병합 순서는?",
-            "options": ["무작위", "수정일 기준", "알파벳 순", "숫자 순", "블록 깊이 우선"],
-            "answer": 2,
-            "explanation": "와일드카드 포함 시 알파벳 순으로 병합됩니다."
-        },
-        {
-            "question": "다음 중 proxy_pass 디렉티브의 주요 기능은?",
-            "options": ["클라이언트 요청을 파일로 저장", "요청을 백엔드 서버로 전달", "요청을 gzip으로 압축", "정적 콘텐츠만 처리", "URI를 리디렉션"],
-            "answer": 1,
-            "explanation": "proxy_pass는 리버스 프록시 역할을 하며 요청을 백엔드로 전달합니다."
-        },
-        {
-            "question": "try_files $uri $uri/ =404; 설정의 목적은?",
-            "options": ["항상 404 에러를 반환", "요청된 파일이 없으면 리디렉션", "여러 경로를 순서대로 시도 후 없으면 404 반환", "요청 URI를 정규표현식으로 처리", "정적 파일을 무조건 생성"],
-            "answer": 2,
-            "explanation": "try_files는 요청된 경로 순서대로 시도하고 실패 시 지정된 코드 또는 경로로 처리합니다."
-        },
-        {
-            "question": "log_format 디렉티브의 주 목적은?",
-            "options": ["에러 로그 저장 위치 지정", "로그 압축 설정", "접근 로그 포맷 지정", "로그 자동 삭제 정책 설정", "로그 암호화 설정"],
-            "answer": 2,
-            "explanation": "log_format은 사용자 정의 접근 로그 포맷을 설정합니다."
-        },
-        {
-            "question": "다음 중 limit_req_zone 디렉티브의 기능은?",
-            "options": ["에러 페이지 처리", "서버 리스닝 포트 제한", "요청 속도 제한 설정", "URI 길이 제한", "사용자 인증 제한"],
-            "answer": 2,
-            "explanation": "limit_req_zone은 클라이언트별 요청 속도 제한을 위한 shared memory zone을 정의합니다."
-        },
-        {
-            "question": "access_log off;의 효과는?",
-            "options": ["에러 로그도 기록되지 않음", "접근 로그만 기록하지 않음", "설정 파일이 무시됨", "로그 파일이 삭제됨", "모든 로그가 syslog로 전송됨"],
-            "answer": 1,
-            "explanation": "access_log off;는 클라이언트 요청 기록을 하지 않도록 설정합니다."
-        },
-        {
-            "question": "server_name 디렉티브는 어떤 용도로 사용되는가?",
-            "options": ["응답 헤더 설정", "서버 블록 선택을 위한 도메인 식별", "업스트림 서버 이름 지정", "로그 파일 이름 지정", "루트 디렉토리 설정"],
-            "answer": 1,
-            "explanation": "server_name은 도메인 이름 기반으로 가상 서버를 매칭합니다."
-        },
-        {
-            "question": "NGINX에서 여러 도메인 처리 시 필요한 구성은?",
-            "options": ["여러 location 블록", "여러 events 블록", "여러 server 블록", "여러 worker 프로세스", "여러 include 명령"],
-            "answer": 2,
-            "explanation": "도메인마다 server 블록을 구성하여 가상 호스트로 설정합니다."
-        },
-        {
-            "question": "캐시 키 및 메타데이터 저장을 위한 설정은?",
-            "options": ["proxy_cache_path", "proxy_buffer_size", "proxy_pass", "cache_control", "access_cache_zone"],
-            "answer": 0,
-            "explanation": "proxy_cache_path는 디스크 캐시 경로와 메타데이터를 위한 메모리 존을 함께 설정합니다."
-        },
-        {
-            "question": "정규표현식을 사용하는 location 블록은 어떤 접두사를 사용하는가?",
-            "options": ["/", "@", "=", "^~", "~ 또는 ~*"],
-            "answer": 4,
-            "explanation": "~은 대소문자 구분, ~*은 대소문자 무시 정규표현식을 위한 접두사입니다."
-        },
-        {
-            "question": "error_page 404 /custom_404.html;의 의미는?",
-            "options": ["404 오류 발생 시 /custom_404.html을 반환", "404를 로그에만 기록", "404 대신 500 오류로 대체", "모든 오류를 무시", "error_page 설정을 무시"],
-            "answer": 0,
-            "explanation": "지정된 오류 코드에 대해 사용자 정의 페이지를 반환하도록 설정합니다."
-        },
-        {
-            "question": "NGINX에서 gzip 압축 기능을 활성화하려면 어떤 디렉티브가 필요한가?",
-            "options": ["enable_gzip on;", "gzip on;", "compression true;", "gzip_enabled yes;", "zip_response on;"],
-            "answer": 1,
-            "explanation": "gzip on;은 HTTP 응답을 압축하기 위한 기본 설정입니다."
-        },
-        {
-            "question": "다음 중 설정 컨텍스트 상속이 발생하는 경로로 올바른 것은?",
-            "options": ["main → server → location → http", "http → server → location", "server → main → events", "location → stream → map", "geo → http → map"],
-            "answer": 1,
-            "explanation": "설정은 상위에서 하위로 http → server → location 컨텍스트로 상속됩니다."
-        },
-        {
-            "question": "keepalive_timeout 0; 설정의 의미는?",
-            "options": ["무한 대기", "keepalive 비활성화", "에러 발생", "keepalive 타임아웃 60초", "응답 지연 발생"],
-            "answer": 1,
-            "explanation": "0으로 설정 시 keepalive 연결이 비활성화됩니다."
-        },
-        {
-            "question": "alias와 root의 차이점은?",
-            "options": ["alias는 정규표현식에서만 사용 가능", "root는 location URI를 파일 경로에 붙임", "alias는 리디렉션에 사용", "alias는 로그 포맷 정의", "root는 정적 콘텐츠에만 사용 가능"],
-            "answer": 1,
-            "explanation": "alias는 전체 경로를 대체하며, root는 URI를 경로 뒤에 붙여 사용합니다."
-        },
-        {
-            "question": "map 블록의 주요 목적은?",
-            "options": ["가상 서버 그룹화", "요청 헤더 기반 변수 설정", "서버 간 로드 밸런싱", "캐시 무효화", "SSL 인증서 선택"],
-            "answer": 1,
-            "explanation": "map은 조건에 따라 변수를 설정하는 데 사용됩니다."
-        },
-        {
-            "question": "listen 80 default_server; 설정은 무엇을 의미하는가?",
-            "options": ["가장 먼저 요청 처리", "항상 HTTPS로 처리", "DNS 응답 사용", "기본 가상 서버로 설정", "특정 클라이언트 전용 처리"],
-            "answer": 3,
-            "explanation": "default_server는 요청이 명시적으로 매칭되지 않을 경우 처리되는 기본 서버입니다."
-        },
-        {
-            "question": "다음 중 업스트림 서버 상태 정보를 공유하는 데 사용되는 설정은?",
-            "options": ["limit_conn_zone", "zone in upstream block", "status directive", "map block", "proxy_buffering off"],
-            "answer": 1,
-            "explanation": "zone은 공유 메모리를 통해 업스트림 상태를 워커 간 공유합니다."
-        },
-        {
-            "question": "gzip_types 디렉티브의 목적은?",
-            "options": ["압축 강도 조절", "gzip 압축을 적용할 MIME 타입 지정", "파일 확장자 필터링", "HTTP 메서드 제한", "캐시 만료 시간 설정"],
-            "answer": 1,
-            "explanation": "gzip_types는 어떤 MIME 타입에 대해 gzip 압축을 적용할지 지정합니다."
-        },
-        {
-            "question": "client_max_body_size의 기본값은?",
-            "options": ["1m", "512k", "0 (제한 없음)", "10m", "2m"],
-            "answer": 0,
-            "explanation": "기본값은 1m로, 본문 크기가 이를 초과하면 413 오류가 발생합니다."
-        },
-        {
-            "question": "resolver 디렉티브의 목적은?",
-            "options": ["DNS 쿼리를 수행할 서버 지정", "클라이언트 IP 차단", "서버 이름 변경", "SSL 핸드셰이크 제어", "리버스 프록시 응답 캐싱"],
-            "answer": 0,
-            "explanation": "resolver는 NGINX가 이름 해석을 위해 사용할 DNS 서버를 지정합니다."
-        },
-        {
-            "question": "NGINX 설정을 구성 파일 전체로 출력하고자 할 때 사용하는 명령은?",
-            "options": ["nginx -t", "nginx -c", "nginx -s reload", "nginx -T", "nginx -d"],
-            "answer": 3,
-            "explanation": "nginx -T는 모든 설정을 병합하여 표준 출력으로 보여줍니다."
-        }
+    "question": "NGINX의 로드 밸런싱에서 least_conn 알고리즘은 어떤 상황에서 가장 유리한가?",
+    "options": [
+      "고정 응답 시간 환경",
+      "라운드로빈 기반 환경",
+      "요청 처리 시간이 일정하지 않은 경우",
+      "IP 기반 분산이 필요한 경우",
+      "세션 정보를 유지해야 할 때"
+    ],
+    "answer": 0,
+    "explanation": "least_conn은 활성 연결 수가 가장 적은 서버에 요청을 보내므로 요청 처리 시간이 불규칙한 환경에 적합합니다."
+  },
+  {
+    "question": "NGINX에서 L4 로드 밸런싱을 위해 사용하는 블록은?",
+    "options": [
+      "http",
+      "server",
+      "location",
+      "stream",
+      "upstream"
+    ],
+    "answer": 3,
+    "explanation": "TCP/UDP 레벨의 L4 로드 밸런싱은 stream 블록을 사용해 구성합니다."
+  },
+  {
+    "question": "NGINX에서 proxy_cache_path directive는 어떤 역할을 하는가?",
+    "options": [
+      "백엔드 연결 설정",
+      "프록시 서버 주소 지정",
+      "캐시 저장소와 영역(zone) 정의",
+      "요청의 헤더를 추가",
+      "정규 표현식 설정"
+    ],
+    "answer": 0,
+    "explanation": "proxy_cache_path는 캐시 저장 위치, zone 이름, 크기 등의 설정을 담당합니다."
+  },
+  {
+    "question": "NGINX에서 캐시 데이터를 특정 시간 이후에 제거하기 위한 설정은?",
+    "options": [
+      "expires",
+      "proxy_pass",
+      "cache_revalidate",
+      "inactive",
+      "cache_key"
+    ],
+    "answer": 3,
+    "explanation": "inactive는 특정 시간 동안 요청이 없으면 해당 캐시 데이터를 삭제합니다."
+  },
+  {
+    "question": "NGINX에서 응답을 미러링 서버로 복사하려면 어떤 directive를 사용하는가?",
+    "options": [
+      "mirror_pass",
+      "proxy_mirror",
+      "mirror",
+      "upstream_mirror",
+      "split_clients"
+    ],
+    "answer": 0,
+    "explanation": "mirror directive는 요청을 메인 서버 외에 미러 서버에도 복사 전송할 수 있도록 설정합니다."
+  },
+  {
+    "question": "NGINX에서 upstream 서버를 weight 기반으로 로드 밸런싱하려면 어떻게 설정하는가?",
+    "options": [
+      "priority",
+      "ip_hash",
+      "server backend1 weight=3;",
+      "least_conn=3;",
+      "load balance weight"
+    ],
+    "answer": 4,
+    "explanation": "weight를 설정하여 특정 서버에 더 많은 요청이 분산되도록 할 수 있습니다."
+  },
+  {
+    "question": "NGINX에서 HTTPS 설정 시 필수로 사용해야 하는 directive는?",
+    "options": [
+      "listen 80;",
+      "ssl_protocols",
+      "ssl_certificate",
+      "proxy_ssl",
+      "server_tokens"
+    ],
+    "answer": 4,
+    "explanation": "HTTPS는 ssl_certificate와 ssl_certificate_key가 필수입니다."
+  },
+  {
+    "question": "NGINX가 웹 서버로서 가지는 고유한 강점은?",
+    "options": [
+      "동기 방식 처리",
+      "Apache 모듈 호환성",
+      "이벤트 기반 아키텍처",
+      "리버스 프록시 전용",
+      "HTML 직접 렌더링"
+    ],
+    "answer": 4,
+    "explanation": "이벤트 기반 아키텍처는 NGINX가 높은 동시성 처리 성능을 발휘할 수 있게 합니다."
+  },
+  {
+    "question": "NGINX에서 동적 콘텐츠는 일반적으로 어떻게 처리되는가?",
+    "options": [
+      "CGI 엔진 직접 실행",
+      "PHP 내장 실행",
+      "FastCGI 또는 프록시 백엔드로 전달",
+      "NGINX 자체 엔진 처리",
+      "JavaScript 내장 처리"
+    ],
+    "answer": 2,
+    "explanation": "NGINX는 동적 콘텐츠 처리를 외부 FastCGI 또는 백엔드 애플리케이션 서버에 위임합니다."
+  },
+  {
+    "question": "NGINX 리버스 프록시에서 클라이언트 IP 정보를 유지하려면 어떤 헤더를 설정해야 하는가?",
+    "options": [
+      "Accept-Encoding",
+      "X-Forwarded-Proto",
+      "X-Real-IP",
+      "Via",
+      "Proxy-Authorization"
+    ],
+    "answer": 2,
+    "explanation": "X-Real-IP는 클라이언트의 실제 IP 주소를 백엔드 서버로 전달합니다."
+  },
+  {
+    "question": "NGINX의 proxy_set_header와 add_header의 차이점은?",
+    "options": [
+      "대상이 요청/응답인지 여부",
+      "동작하는 포트 차이",
+      "SSL 적용 여부",
+      "정규표현식 사용 여부",
+      "캐시 처리 여부"
+    ],
+    "answer": 0,
+    "explanation": "proxy_set_header는 요청 헤더 조작, add_header는 응답 헤더 설정입니다."
+  },
+  {
+    "question": "NGINX에서 캐시를 활성화하려면 어떤 directive가 필수로 필요할까?",
+    "options": [
+      "proxy_cache_path",
+      "add_header",
+      "upstream cache;",
+      "fastcgi_buffer",
+      "server_cache_enable"
+    ],
+    "answer": 0,
+    "explanation": "proxy_cache_path는 캐시를 사용할 메모리 존(zone)을 먼저 정의합니다."
+  },
+  {
+    "question": "정규 표현식 location을 대소문자 구분 없이 사용하려면 어떤 접두어를 사용하는가?",
+    "options": [
+      "^~",
+      "~*",
+      "~",
+      "=",
+      "!*"
+    ],
+    "answer": 1,
+    "explanation": "~*는 대소문자 구분 없는 정규표현식 location 매칭에 사용됩니다."
+  },
+  {
+    "question": "캐시된 응답의 유효 시간을 지정하는 directive는?",
+    "options": [
+      "proxy_pass",
+      "proxy_cache_key",
+      "proxy_cache_valid",
+      "expires",
+      "proxy_buffer_size"
+    ],
+    "answer": 2,
+    "explanation": "proxy_cache_valid는 상태 코드에 따라 캐시 유효 시간을 정의합니다."
+  },
+  {
+    "question": "다음 중 API Gateway 구성 시 중요하지 않은 요소는?",
+    "options": [
+      "라우팅",
+      "인증",
+      "요청 필터링",
+      "정적 파일 서빙",
+      "속도 제한(Rate Limiting)"
+    ],
+    "answer": 3,
+    "explanation": "API Gateway는 동적 요청 처리와 제어 기능이 중심이며, 정적 파일 서빙은 주 목적이 아닙니다."
+  },
+  {
+    "question": "로드 밸런싱 환경에서 세션 일관성을 위해 주로 사용하는 방법은?",
+    "options": [
+      "least_conn",
+      "weight",
+      "round_robin",
+      "ip_hash",
+      "zone_sync"
+    ],
+    "answer": 3,
+    "explanation": "ip_hash는 같은 클라이언트 IP를 동일한 백엔드 서버에 연결하여 세션 유지를 보장합니다."
+  },
+  {
+    "question": "다음 중 NGINX에서 동작 중인 서버에서 특정 서버를 안전하게 제외하는 방법은?",
+    "options": [
+      "server backend down;",
+      "remove backend;",
+      "server backend backup;",
+      "server backend down weight=0;",
+      "server backend max_fails=1 fail_timeout=5s;"
+    ],
+    "answer": 4,
+    "explanation": "fail_timeout과 max_fails를 설정하면 실패한 서버는 일정 시간 동안 자동으로 제외됩니다."
+  },
+  {
+    "question": "NGINX에서 캐시 무효화를 위해 사용하는 directive는?",
+    "options": [
+      "proxy_cache_valid",
+      "proxy_cache_bypass",
+      "cache_clean",
+      "expires off",
+      "max-age=0"
+    ],
+    "answer": 1,
+    "explanation": "특정 조건에서 캐시 사용을 우회하려면 proxy_cache_bypass를 사용합니다."
+  },
+  {
+    "question": "NGINX에서 캐시된 콘텐츠를 제거하지 않고 사용하도록 설정하려면?",
+    "options": [
+      "proxy_ignore_headers",
+      "proxy_cache_use_stale",
+      "inactive",
+      "expires always",
+      "cache_lock"
+    ],
+    "answer": 1,
+    "explanation": "백엔드 오류 시에도 오래된 캐시를 사용하려면 proxy_cache_use_stale을 설정합니다."
+  },
+  {
+    "question": "NGINX에서 FastCGI 처리 시 사용되는 주요 directive는?",
+    "options": [
+      "proxy_pass",
+      "fastcgi_pass",
+      "mirror_pass",
+      "tcp_pass",
+      "gzip_pass"
+    ],
+    "answer": 1,
+    "explanation": "PHP와 같은 FastCGI 백엔드와 연동하려면 fastcgi_pass를 사용합니다."
+  },
+  {
+    "question": "NGINX에서 keepalive directive를 사용하는 주요 목적은?",
+    "options": [
+      "서버 간 연결 차단",
+      "요청을 백업 서버로 전달",
+      "연결 재사용을 통한 성능 향상",
+      "캐시 무효화 설정",
+      "SSL 종료 처리"
+    ],
+    "answer": 2,
+    "explanation": "keepalive는 백엔드와의 연결을 재사용하여 성능을 향상시키고 리소스를 절약합니다."
+  },
+  {
+    "question": "다음 중 add_header directive가 적용되지 않는 경우는?",
+    "options": [
+      "200 OK 응답",
+      "301 리디렉션 응답",
+      "404 오류 응답",
+      "304 Not Modified 응답 ",
+      "308 Permanent Redirect 응답"
+    ],
+    "answer": 3,
+    "explanation": "기본적으로 add_header는 일부 상태 코드에만 적용됩니다. always 키워드를 사용해야 모든 응답 코드에 적용할 수 있습니다."
+  },
+  {
+    "question": "NGINX에서 정적 파일을 제공할 때 사용하는 directive는?",
+    "options": [
+      "proxy_pass",
+      "alias",
+      "ssl_certificate",
+      "mirror",
+      "set_header"
+    ],
+    "answer": 1,
+    "explanation": "alias는 특정 경로를 다른 파일 시스템 경로로 매핑하여 정적 파일을 제공할 수 있게 합니다."
+  },
+  {
+    "question": "NGINX에서 map 블록을 사용하여 할 수 없는 작업은?",
+    "options": [
+      "User-Agent에 따른 변수 설정",
+      "클라이언트 IP에 따라 접근 제어",
+      "요청 경로 기반 리다이렉트",
+      "동적으로 변수 값 설정",
+      "프록시 백엔드 서버 수 증가"
+    ],
+    "answer": 4,
+    "explanation": "map은 조건에 따라 변수 값을 설정하는 데 사용되며, 직접적으로 백엔드 서버 수를 조절할 수는 없습니다."
+  },
+  {
+    "question": "proxy_cache_key directive의 역할은 무엇인가?",
+    "options": [
+      "캐시 디렉토리 지정",
+      "백엔드 연결 수 설정",
+      "요청 URL 캐시 키 결정",
+      "로그 레벨 지정",
+      "TLS 암호 스위트 설정"
+    ],
+    "answer": 2,
+    "explanation": "proxy_cache_key는 요청마다 고유한 캐시 키를 정의하여, 어떤 요청을 어떤 캐시에 저장할지 결정합니다."
+  },
+  {
+    "question": "NGINX에서 gzip 압축 설정을 적용하려면 반드시 설정해야 하는 directive는?",
+    "options": [
+      "gzip_types",
+      "proxy_pass",
+      "client_body_size",
+      "listen 443 ssl;",
+      "worker_connections"
+    ],
+    "answer": 0,
+    "explanation": "gzip_types는 어떤 MIME 타입에 대해 압축을 적용할지를 지정합니다. gzip on;과 함께 사용됩니다."
+  },
+  {
+    "question": "다음 중 open source NGINX에서 기본 제공되지 않는 기능은?",
+    "options": [
+      "L7 리버스 프록시",
+      "HTTP 캐시",
+      "미러링",
+      "TCP 로드밸런싱",
+      "액티브 헬스 체크"
+    ],
+    "answer": 4,
+    "explanation": "액티브 헬스 체크는 NGINX Plus에서 제공되며, 오픈소스 버전에서는 수동 설정이나 3rd-party 모듈이 필요합니다."
+  },
+  {
+    "question": "NGINX에서 캐시된 콘텐츠가 갱신되지 않도록 조건을 설정하려면 어떤 directive를 사용하는가?",
+    "options": [
+      "proxy_cache_bypass",
+      "proxy_cache_lock",
+      "proxy_ignore_headers",
+      "proxy_pass_request_headers",
+      "proxy_set_cache"
+    ],
+    "answer": 2,
+    "explanation": "proxy_ignore_headers는 백엔드 응답의 캐시 관련 헤더(예: Cache-Control)를 무시하고 캐시 유지 정책을 강제합니다."
+  },
+  {
+    "question": "다음 중 NGINX의 location 블록에 사용할 수 없는 접두어는?",
+    "options": [
+      "=",
+      "~",
+      "^~",
+      "!*",
+      "~*"
+    ],
+    "answer": 3,
+    "explanation": "!*는 NGINX에서 사용되는 접두어가 아닙니다. 나머지는 정확한 location 매칭을 위한 접두어입니다."
+  },
+  {
+    "question": "NGINX의 resolver directive는 어떤 상황에서 주로 사용되는가?",
+    "options": [
+      "SSL 인증서 설정",
+      "DNS 기반 로드밸런싱",
+      "캐시 정책 설정",
+      "클라이언트 IP 차단",
+      "정적 파일 경로 지정"
+    ],
+    "answer": 1,
+    "explanation": "resolver는 도메인 이름을 동적으로 해석(DNS 쿼리)해야 할 경우 필요합니다. 예: proxy_pass에서 도메인 사용 시."
+  }
     ],
     "F5N3": [
         {
-            "question": "다음 중 NGINX 설치 후 웹 서버로 설정을 완료하는 기본 구성은?",
-            "options": ["listen 53;", "server_name localhost; root /usr/share/nginx/html;", "proxy_pass http://backend;", "stream {} 블록 추가", "access_log off;"],
-            "answer": 1,
-            "explanation": "웹 서버 기본 설정에는 server_name과 root 디렉티브가 포함됩니다."
-        },
-        {
-            "question": "다음 중 NGINX가 제대로 실행되고 있는지 확인할 수 있는 명령은?",
-            "options": ["nginx -h", "ps aux | grep nginx", "killall nginx", "systemctl stop nginx", "ls /etc/nginx/ssl"],
-            "answer": 1,
-            "explanation": "ps 명령을 통해 실행 중인 nginx 프로세스를 확인할 수 있습니다."
-        },
-        {
-            "question": "NGINX 설정을 다시 적용하면서 중단 없이 반영하려면?",
-            "options": ["nginx -s restart", "nginx --reload", "nginx -s reload", "systemctl reset nginx", "nginx -q"],
-            "answer": 2,
-            "explanation": "nginx -s reload는 다운타임 없이 설정을 재적용합니다."
-        },
-        {
-            "question": "NGINX로 HTTPS 제공 시 반드시 필요한 두 가지 설정은?",
-            "options": ["ssl_certificate 와 ssl_certificate_key", "server_name 와 gzip", "root 와 listen 80", "access_log 와 proxy_pass", "ssl_verify 와 resolver"],
-            "answer": 0,
-            "explanation": "HTTPS는 인증서와 개인 키가 있어야 동작합니다."
-        },
-        {
-            "question": "다음 중 프록시 서버로 동작하는 설정은?",
-            "options": ["listen 8080;", "proxy_pass http://backend;", "root /var/www/html;", "ssl_certificate cert.pem;", "access_log off;"],
-            "answer": 1,
-            "explanation": "proxy_pass는 리버스 프록시 역할을 수행합니다."
-        },
-        {
-            "question": "다음 중 설정이 잘못된 경우 에러 로그를 확인할 수 있는 기본 위치는?",
-            "options": ["/var/log/nginx/error.log", "/etc/nginx/access.log", "/usr/nginx/errors", "/tmp/nginx.log", "/etc/nginx/errors.txt"],
-            "answer": 0,
-            "explanation": "기본적으로 에러 로그는 /var/log/nginx/error.log에 저장됩니다."
-        },
-        {
-            "question": "다음 중 shared memory zone을 사용하여 여러 워커 간 상태를 공유하는 기능은?",
-            "options": ["업로드 디렉토리 설정", "gzip 압축", "캐시 메타데이터", "로그 필터링", "리스닝 포트"],
-            "answer": 2,
-            "explanation": "캐시 키 및 메타데이터는 공유 메모리를 통해 워커 간 공유됩니다."
-        },
-        {
-            "question": "try_files $uri $uri/ =404; 설정의 역할은?",
-            "options": ["요청을 백엔드로 프록시", "정적 파일 제공 후 없으면 404", "모든 요청을 무시", "요청을 압축", "클라이언트 IP 제한"],
-            "answer": 1,
-            "explanation": "try_files는 요청된 URI 파일을 시도하고 없으면 404 반환합니다."
-        },
-        {
-            "question": "다음 중 모듈 기능을 올바르게 설명한 것은?",
-            "options": ["NGINX는 모듈 없이 실행되지 않음", "모듈은 NGINX 기능을 확장", "모듈은 설정이 아닌 실행 시 주입", "모듈은 HTTP 요청을 차단함", "모듈은 로그를 삭제함"],
-            "answer": 1,
-            "explanation": "NGINX 모듈은 로깅, 캐싱, 프록시 등 다양한 기능을 추가합니다."
-        },
-        {
-            "question": "NGINX 설치 후 서비스 시작을 위해 사용하는 명령은?",
-            "options": ["nginx -c", "nginx -d", "nginx", "nginx -f", "nginx -k"],
-            "answer": 2,
-            "explanation": "단순히 nginx 명령만 입력하면 서비스가 시작됩니다."
-        },
-        {
-            "question": "다음 중 설정 적용 직후 반드시 해야 할 명령은?",
-            "options": ["nginx -T", "nginx -s reload", "nginx -c reload.conf", "nginx -m", "nginx --recheck"],
-            "answer": 1,
-            "explanation": "설정 적용 후 서비스에 반영하려면 nginx -s reload가 필요합니다."
-        },
-        {
-            "question": "NGINX 설정 오류가 있을 때 출력되는 메시지는 어떤 명령으로 확인하는가?",
-            "options": ["nginx -c", "nginx -r", "nginx -t", "nginx -v", "nginx -h"],
-            "answer": 2,
-            "explanation": "nginx -t는 설정 테스트용 명령어입니다."
-        },
-        {
-            "question": "다음 중 올바른 리버스 프록시 location 블록 구성 예시는?",
-            "options": ["return 404;", "alias /backend/api;", "proxy_pass http://backend;", "gzip on;", "access_log off;"],
-            "answer": 2,
-            "explanation": "proxy_pass는 백엔드로 요청을 전달합니다."
-        },
-        {
-            "question": "gzip 압축을 설정하려면 어떤 디렉티브를 포함해야 하는가?",
-            "options": ["gzip_mode on;", "gzip_compression true;", "gzip on;", "gzip_compress_enable on;", "enable_zip;"],
-            "answer": 2,
-            "explanation": "gzip on;으로 설정하여 HTTP 응답 압축을 활성화합니다."
-        },
-        {
-            "question": "다음 중 location 블록에서 정규표현식을 사용하는 접두사는?",
-            "options": ["^/api", "=", "~", "@", "#"],
-            "answer": 2,
-            "explanation": "~는 정규표현식을 사용하는 location을 의미합니다."
-        },
-        {
-            "question": "NGINX에서 404 에러를 사용자 정의 페이지로 바꾸기 위한 설정은?",
-            "options": ["return 404;", "proxy_intercept_errors on;", "error_page 404 /404.html;", "log_format off;", "client_body_timeout 0;"],
-            "answer": 2,
-            "explanation": "error_page 디렉티브는 사용자 정의 에러 페이지를 설정합니다."
-        },
-        {
-            "question": "캐시 사용을 위해 반드시 지정해야 하는 구성은?",
-            "options": ["gzip_static on;", "proxy_cache_path", "upstream cache_server {}", "client_body_temp_path", "proxy_read_buffer"],
-            "answer": 1,
-            "explanation": "proxy_cache_path는 캐시 위치 및 공유 메모리 zone을 지정합니다."
-        },
-        {
-            "question": "다음 중 HTTPS 설정에 필요한 디렉티브 쌍은?",
-            "options": ["ssl_buffer_size, ssl_protocols", "ssl_certificate, ssl_certificate_key", "ssl_session_id, ssl_verify_client", "ssl_compression, ssl_early_data", "ssl_log, ssl_keepalive"],
-            "answer": 1,
-            "explanation": "인증서와 개인 키는 HTTPS 동작에 필수입니다."
-        },
-        {
-            "question": "access_log off;를 사용하면 어떤 현상이 발생하는가?",
-            "options": ["NGINX가 종료된다", "에러 로그도 기록되지 않는다", "접근 로그가 남지 않는다", "로그가 디스크에 두 번 저장된다", "접근 로그가 error.log에 기록된다"],
-            "answer": 2,
-            "explanation": "access_log off;는 클라이언트 요청 로그를 기록하지 않게 합니다."
-        },
-        {
-            "question": "다음 중 server 블록 내부에서 사용할 수 없는 디렉티브는?",
-            "options": ["listen", "server_name", "location", "proxy_pass", "worker_processes"],
+            "question": "nginx -s stop 명령이 수행하는 작업은?",
+            "options": [
+                "설정 파일을 테스트하고 적용",
+                "설정을 리로드",
+                "NGINX를 비정상 종료",
+                "워커 프로세스만 종료",
+                "마스터 및 워커 프로세스를 정상 종료"
+            ],
             "answer": 4,
-            "explanation": "worker_processes는 main 블록(최상위)에서만 사용 가능합니다."
+            "explanation": ""
         },
         {
-            "question": "요청 URI에 따라 서로 다른 백엔드에 라우팅하는 구성은?",
-            "options": ["하나의 location에서 여러 proxy_pass", "여러 server에서 동일한 location", "여러 location에서 서로 다른 proxy_pass", "rewrite 디렉티브만 사용", "/ 위치에서 다 처리"],
+            "question": "설정을 적용하기 전에 문법 오류가 있는지 확인하려면 어떤 명령을 사용해야 하는가?",
+            "options": [
+                "nginx --check",
+                "nginx -s test",
+                "nginx -t",
+                "nginx configtest",
+                "nginx -c"
+            ],
             "answer": 2,
-            "explanation": "URI 패턴별로 location 블록을 나누고 각각 proxy_pass로 분기합니다."
+            "explanation": ""
         },
         {
-            "question": "listen 443 ssl;을 사용하려면 필수로 설정해야 할 항목은?",
-            "options": ["gzip_static", "server_name", "ssl_certificate와 ssl_certificate_key", "access_log", "default_server"],
+            "question": "kill -HUP <nginx pid> 시그널의 효과는?",
+            "options": [
+                "NGINX 프로세스 강제 종료",
+                "NGINX 완전 재시작",
+                "설정을 다시 로드",
+                "에러 로그 초기화",
+                "리스닝 포트 변경"
+            ],
             "answer": 2,
-            "explanation": "443 포트에서 SSL을 활성화하려면 인증서 및 키가 필수입니다."
+            "explanation": ""
         },
         {
-            "question": "HTTP 요청 헤더의 특정 값에 따라 설정을 변경하고 싶을 때 사용하는 블록은?",
-            "options": ["upstream", "stream", "location", "map", "http"],
+            "question": "nginx -s reload와 nginx -s stop && nginx의 주요 차이는?",
+            "options": [
+                "로그 디렉토리를 다르게 사용",
+                "SSL 핸드셰이크 차이",
+                "후자는 다운타임이 발생함",
+                "전자는 PID를 변경함",
+                "둘 다 완전한 재시작"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "NGINX를 수동으로 종료하려면 어떤 명령이 가장 적절한가?",
+            "options": [
+                "nginx --exit",
+                "systemctl stop nginx",
+                "nginx -s restart",
+                "nginx -z",
+                "nginx -s kill"
+            ],
+            "answer": 1,
+            "explanation": ""
+        },
+        {
+            "question": "403 Forbidden 오류의 일반적인 원인은?",
+            "options": [
+                "프록시 백엔드 연결 실패",
+                "gzip 설정 오류",
+                "파일 권한 부족",
+                "인증서 만료",
+                "서버 이름 불일치"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "HTTP 502 Bad Gateway 오류의 원인은?",
+            "options": [
+                "설정 파일에 문법 오류",
+                "TLS 핸드셰이크 실패",
+                "백엔드 서버 미응답",
+                "파일이 존재하지 않음",
+                "리스닝 포트 누락"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "access.log에서 $status가 499인 의미는?",
+            "options": [
+                "요청이 정상적으로 완료됨",
+                "서버 에러 발생",
+                "클라이언트가 연결을 중단함",
+                "캐시에서 응답",
+                "SSL 핸드셰이크 실패"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "NGINX 시작 시 \"bind() to 0.0.0.0:80 failed\" 에러가 발생했다면?",
+            "options": [
+                "포트가 이미 사용 중임",
+                "인증서가 만료됨",
+                "gzip 설정 누락",
+                "루트 디렉토리 오류",
+                "PID 파일이 없음"
+            ],
+            "answer": 0,
+            "explanation": ""
+        },
+        {
+            "question": "복수의 가상 호스트에서 동일한 포트를 사용할 경우 충돌을 방지하려면?",
+            "options": [
+                "각 server 블록에 default_server 지정",
+                "listen 포트를 다르게 설정",
+                "SSL 설정을 모두 비활성화",
+                "access_log를 공통으로 지정",
+                "error_log를 주석 처리"
+            ],
+            "answer": 0,
+            "explanation": ""
+        },
+        {
+            "question": "add_header 설정이 location 블록에서 적용되지 않는 이유는?",
+            "options": [
+                "정규식 location 우선순위",
+                "gzip 압축과 충돌",
+                "add_header는 if 블록에서만 적용",
+                "부모 블록에서 설정되어 override 불가",
+                "응답 코드가 200이 아니기 때문"
+            ],
+            "answer": 4,
+            "explanation": ""
+        },
+        {
+            "question": "여러 location 블록이 있는 경우 NGINX가 선택하는 기준은?",
+            "options": [
+                "정의 순서",
+                "정규 표현식이 우선",
+                "짧은 URI 우선",
+                "설정 파일 이름 우선",
+                "서버 이름"
+            ],
+            "answer": 1,
+            "explanation": ""
+        },
+        {
+            "question": "클라이언트가 요청을 했지만 응답이 지연될 때 확인해야 할 항목은?",
+            "options": [
+                "리스닝 포트",
+                "gzip 설정",
+                "백엔드 서버 응답 시간",
+                "SSL 인증서 체인",
+                "에러 코드"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "설정은 문제없는데 서비스가 시작되지 않는다면 SELinux 관련 항목으로 무엇을 점검해야 하나?",
+            "options": [
+                "서비스 포트",
+                "context type (예: httpd_sys_content_t)",
+                "worker_processes 수",
+                "gzip 설정 여부",
+                "upstream 이름"
+            ],
+            "answer": 1,
+            "explanation": ""
+        },
+        {
+            "question": "SELinux 환경에서 HTTP 요청이 거부될 경우 확인할 명령은?",
+            "options": [
+                "ausearch -m avc -ts recent",
+                "ls -Z",
+                "getenforce",
+                "위 모두",
+                "해당 없음"
+            ],
             "answer": 3,
-            "explanation": "map은 조건에 따라 변수 값을 설정할 수 있도록 도와줍니다."
+            "explanation": ""
         },
         {
-            "question": "다음 중 정적 파일을 직접 서빙하는 데 필요한 디렉티브는?",
-            "options": ["proxy_pass", "root", "alias", "fastcgi_pass", "upstream"],
-            "answer": 1,
-            "explanation": "root는 URI와 연결된 실제 경로를 설정해 정적 파일 제공이 가능합니다."
-        },
-        {
-            "question": "gzip_types를 설정하는 이유는?",
-            "options": ["클라이언트 IP를 제한", "gzip 압축을 적용할 MIME 타입 지정", "브라우저 종류 식별", "gzip 압축을 비활성화", "error.log 용량 제한"],
-            "answer": 1,
-            "explanation": "MIME 타입에 따라 gzip 적용 여부를 결정합니다."
-        },
-        {
-            "question": "다음 중 로깅을 완전히 비활성화하려면 무엇을 설정해야 하는가?",
-            "options": ["log_format none;", "access_log off; error_log off;", "access_log disable;", "disable_log on;", "log_level silent;"],
-            "answer": 1,
-            "explanation": "access_log와 error_log를 모두 끄면 로그가 기록되지 않습니다."
-        },
-        {
-            "question": "다음 중 설정 파일을 한눈에 출력하는 명령은?",
-            "options": ["nginx -c", "nginx -t", "nginx -s show", "nginx -T", "nginx -d"],
-            "answer": 3,
-            "explanation": "nginx -T는 전체 병합된 설정을 표준 출력으로 보여줍니다."
-        },
-        {
-            "question": "여러 서버 블록 중 기본값으로 처리될 서버를 지정하려면?",
-            "options": ["listen 80 primary;", "server default on;", "listen 80 default_server;", "location / default;", "server_name default;"],
+            "question": "HTTPS 연결 시 “ERR_CERT_DATE_INVALID” 오류가 발생한 경우는?",
+            "options": [
+                "포트 충돌",
+                "DNS 설정 문제",
+                "인증서 유효기간 만료",
+                "gzip 설정 누락",
+                "캐시 만료"
+            ],
             "answer": 2,
-            "explanation": "default_server는 명시적 매칭 실패 시 기본 처리 서버로 설정됩니다."
+            "explanation": ""
         },
         {
-            "question": "NGINX 설정에서 HTTP 요청 속도를 제한하려면 어떤 구성 요소가 필요할까?",
-            "options": ["limit_conn", "limit_req_zone + limit_req", "client_max_body_size", "proxy_buffering", "http2_max_requests"],
-            "answer": 1,
-            "explanation": "요청 속도 제한은 limit_req_zone으로 shared memory 설정 후, limit_req로 적용합니다."
+            "question": "클라이언트가 \"SSL handshake failed\" 메시지를 출력할 때 점검해야 할 것은?",
+            "options": [
+                "listen 포트",
+                "캐시 경로",
+                "인증서 및 키 쌍의 유효성",
+                "gzip 여부",
+                "로깅 수준"
+            ],
+            "answer": 2,
+            "explanation": ""
         },
         {
-            "question": "다음 중 TLS 설정 시 클라이언트 인증(양방향 인증)에 사용하는 디렉티브는?",
-            "options": ["ssl_session_timeout", "ssl_verify_client", "ssl_certificate", "ssl_ecdh_curve", "ssl_protocols"],
+            "question": "TLS 설정에서 ssl_verify_client를 on으로 설정했을 때 예상되는 결과는?",
+            "options": [
+                "서버 인증 생략",
+                "클라이언트 인증 생략",
+                "클라이언트 인증서가 없으면 연결 거부",
+                "gzip 자동 활성화",
+                "프록시 로깅 중단"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "인증서가 PEM 형식이 아닐 경우 발생 가능한 문제는?",
+            "options": [
+                "접근 로그 누락",
+                "gzip 미적용",
+                "TLS 연결 실패",
+                "서버 자동 종료",
+                "요청 URI 재정의"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "ssl_certificate와 ssl_certificate_key 경로가 잘못되었을 경우 발생하는 현상은?",
+            "options": [
+                "HTTP 요청으로 대체됨",
+                "TLS 핸드셰이크 실패",
+                "gzip 오류 발생",
+                "캐시 무효화",
+                "DNS 재전파"
+            ],
             "answer": 1,
-            "explanation": "ssl_verify_client는 클라이언트 인증서 요구 여부를 설정합니다."
+            "explanation": ""
+        },
+        {
+            "question": "HTTPS 접속 시 ERR_CERT_COMMON_NAME_INVALID 오류가 발생하는 원인은?",
+            "options": [
+                "클라이언트 IP 차단",
+                "gzip 설정 누락",
+                "인증서의 Common Name이 요청한 도메인과 불일치",
+                "DNS 루프",
+                "SELinux 설정 부족"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "ssl_certificate 파일 경로가 잘못되었을 때 설정 적용 시 나타나는 오류는?",
+            "options": [
+                "403 Forbidden",
+                "404 Not Found",
+                "NGINX 재시작 실패 및 error.log에 파일 경로 오류",
+                "gzip 압축 오류",
+                "연결 유지 실패"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "클라이언트 측에서 TLS 연결 시도 후 “unknown CA” 오류가 발생한다면?",
+            "options": [
+                "서버의 공개키가 누락됨",
+                "인증서 서명자가 신뢰되지 않음",
+                "서버가 gzip을 비활성화함",
+                "포트 바인딩 실패",
+                "접속 제한 시간 초과"
+            ],
+            "answer": 1,
+            "explanation": ""
+        },
+        {
+            "question": "TLS 설정 변경 후 테스트를 위한 명령으로 적절한 것은?",
+            "options": [
+                "curl -k https://example.com",
+                "wget -qO- http://localhost",
+                "openssl s_client -connect example.com:443",
+                "dig example.com A",
+                "ping example.com"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "다음 중 NGINX에서 클라이언트 접속 문제를 디버깅할 때 가장 유용한 로그는?",
+            "options": [
+                "boot.log",
+                "/var/log/nginx/access.log",
+                "/etc/nginx/mime.types",
+                "yum.log",
+                "/proc/cpuinfo"
+            ],
+            "answer": 1,
+            "explanation": ""
+        },
+        {
+            "question": "HTTP 상태 코드 504는 무엇을 의미하는가?",
+            "options": [
+                "서버 응답 없음",
+                "DNS 해결 실패",
+                "게이트웨이 타임아웃 (백엔드 응답 지연)",
+                "요청 본문 형식 오류",
+                "인증 실패"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "다중 server 블록에서 요청이 의도한 블록이 아닌 다른 블록으로 전달된다면 가장 먼저 점검할 설정은?",
+            "options": [
+                "listen 포트",
+                "server_name 정확도 및 default_server 지정 여부",
+                "location 블록 개수",
+                "proxy_set_header",
+                "access_log 경로"
+            ],
+            "answer": 1,
+            "explanation": ""
+        },
+        {
+            "question": "NGINX가 실행 중인 것처럼 보이지만 실제 요청이 응답되지 않는다면 우선적으로 점검할 항목은?",
+            "options": [
+                "로깅 포맷",
+                "gzip 상태",
+                "방화벽 상태 및 포트 열림 여부",
+                "정적 파일 수",
+                "mime.types 설정"
+            ],
+            "answer": 2,
+            "explanation": ""
+        },
+        {
+            "question": "다음 중 nginx -T 명령의 주요 기능은?",
+            "options": [
+                "PID 재설정",
+                "설정 파일 전체 병합 내용 출력",
+                "프로세스 상태 표시",
+                "SSL 재시작",
+                "백엔드 서버 헬스체크"
+            ],
+            "answer": 1,
+            "explanation": ""
+        },
+        {
+            "question": "다음 중 NGINX 구동 실패 시 가장 먼저 확인해야 하는 파일은?",
+            "options": [
+                "/etc/hosts",
+                "/var/log/nginx/error.log",
+                "/etc/nginx/mime.types",
+                "/var/run/nginx.pid",
+                "/etc/shadow"
+            ],
+            "answer": 1,
+            "explanation": ""
         }
     ],
     "F5N4": [
         {
-            "question": "nginx -s reload와 -s stop의 차이점은?",
-            "options": ["둘 다 동일하다", "reload는 설정 재적용, stop은 종료", "stop은 재시작 포함", "reload는 로그 초기화"],
-            "answer": 1,
-            "explanation": "reload는 설정 파일을 다시 읽고 프로세스를 재시작 없이 갱신하고, stop은 NGINX 프로세스를 종료합니다."
+            "question": "nginx -s stop 명령이 수행하는 작업은?",
+            "options": ["설정 파일을 테스트하고 적용", "설정을 리로드", "NGINX를 비정상 종료", "워커 프로세스만 종료", "마스터 및 워커 프로세스를 정상 종료"],
+            "answer": 4,
+            "explanation": "nginx -s stop은 마스터와 워커 프로세스를 모두 종료시킵니다."
         },
         {
-            "question": "TLS 연결 오류 중 ERR_CERT_DATE_INVALID는 어떤 문제인가?",
-            "options": ["포트 충돌", "인증서 만료", "키 손상", "프록시 오류"],
+            "question": "설정을 적용하기 전에 문법 오류가 있는지 확인하려면 어떤 명령을 사용해야 하는가?",
+            "options": ["nginx --check", "nginx -s test", "nginx -t", "nginx configtest", "nginx -c"],
+            "answer": 2,
+            "explanation": "nginx -t는 설정의 문법 및 유효성을 확인합니다."
+        },
+        {
+            "question": "kill -HUP <nginx pid> 시그널의 효과는?",
+            "options": ["NGINX 프로세스 강제 종료", "NGINX 완전 재시작", "설정을 다시 로드", "에러 로그 초기화", "리스닝 포트 변경"],
+            "answer": 2,
+            "explanation": "HUP 시그널은 설정을 다시 로드하며 프로세스를 재시작하지 않습니다."
+        },
+        {
+            "question": "nginx -s reload와 nginx -s stop && nginx의 주요 차이는?",
+            "options": ["로그 디렉토리를 다르게 사용", "SSL 핸드셰이크 차이", "후자는 다운타임이 발생함", "전자는 PID를 변경함", "둘 다 완전한 재시작"],
+            "answer": 2,
+            "explanation": "reload는 무중단 구성 반영이고, stop && start는 일시적으로 중단됩니다."
+        },
+        {
+            "question": "NGINX를 수동으로 종료하려면 어떤 명령이 가장 적절한가?",
+            "options": ["nginx --exit", "systemctl stop nginx", "nginx -s restart", "nginx -z", "nginx -s kill"],
             "answer": 1,
-            "explanation": "ERR_CERT_DATE_INVALID는 인증서 유효 기간이 만료되었거나 시간이 올바르지 않을 때 발생합니다."
+            "explanation": "systemd 기반 시스템에서는 systemctl stop nginx를 통해 서비스 종료합니다."
+        },
+        {
+            "question": "403 Forbidden 오류의 일반적인 원인은?",
+            "options": ["프록시 백엔드 연결 실패", "gzip 설정 오류", "파일 권한 부족", "인증서 만료", "서버 이름 불일치"],
+            "answer": 2,
+            "explanation": "접근 권한이 없으면 403 오류가 발생합니다."
+        },
+        {
+            "question": "HTTP 502 Bad Gateway 오류의 원인은?",
+            "options": ["설정 파일에 문법 오류", "TLS 핸드셰이크 실패", "백엔드 서버 미응답", "파일이 존재하지 않음", "리스닝 포트 누락"],
+            "answer": 0,
+            "explanation": "502는 프록시된 서버가 응답하지 않거나 오류를 반환할 때 발생합니다."
+        },
+        {
+            "question": "access.log에서 $status가 499인 의미는?",
+            "options": ["요청이 정상적으로 완료됨", "서버 에러 발생", "클라이언트가 연결을 중단함", "캐시에서 응답", "SSL 핸드셰이크 실패"],
+            "answer": 4,
+            "explanation": "499는 클라이언트가 응답을 받기 전 연결을 종료했을 때 기록됩니다."
+        },
+        {
+            "question": "NGINX 시작 시 \"bind() to 0.0.0.0:80 failed\" 에러가 발생했다면?",
+            "options": ["포트가 이미 사용 중임", "인증서가 만료됨", "gzip 설정 누락", "루트 디렉토리 오류", "PID 파일이 없음"],
+            "answer": 0,
+            "explanation": "이미 다른 프로세스가 해당 포트를 사용 중일 경우 bind 오류가 납니다."
+        },
+        {
+            "question": "복수의 가상 호스트에서 동일한 포트를 사용할 경우 충돌을 방지하려면?",
+            "options": ["각 server 블록에 default_server 지정", "listen 포트를 다르게 설정", "SSL 설정을 모두 비활성화", "access_log를 공통으로 지정", "error_log를 주석 처리"],
+            "answer": 0,
+            "explanation": "동일 포트에 여러 서버 블록이 있을 때, 하나는 기본 서버로 지정해야 충돌이 발생하지 않습니다."
+        },
+        {
+            "question": "add_header 설정이 location 블록에서 적용되지 않는 이유는?",
+            "options": ["정규식 location 우선순위", "gzip 압축과 충돌", "add_header는 if 블록에서만 적용", "부모 블록에서 설정되어 override 불가", "응답 코드가 200이 아니기 때문"],
+            "answer": 3,
+            "explanation": "add_header는 기본적으로 200, 204, 301, 302 응답에만 적용됩니다."
+        },
+        {
+            "question": "여러 location 블록이 있는 경우 NGINX가 선택하는 기준은?",
+            "options": ["정의 순서", "정규 표현식이 우선", "짧은 URI 우선", "설정 파일 이름 우선", "서버 이름"],
+            "answer": 1,
+            "explanation": "정규표현식 location (~, ~*)은 일반 prefix location보다 우선합니다."
+        },
+        {
+            "question": "클라이언트가 요청을 했지만 응답이 지연될 때 확인해야 할 항목은?",
+            "options": ["리스닝 포트", "gzip 설정", "백엔드 서버 응답 시간", "SSL 인증서 체인", "에러 코드"],
+            "answer": 4,
+            "explanation": "응답 지연은 대개 백엔드 서버 성능 문제에서 기인합니다."
+        },
+        {
+            "question": "설정은 문제없는데 서비스가 시작되지 않는다면 SELinux 관련 항목으로 무엇을 점검해야 하나?",
+            "options": ["서비스 포트", "context type (예: httpd_sys_content_t)", "worker_processes 수", "gzip 설정 여부", "upstream 이름"],
+            "answer": 1,
+            "explanation": "SELinux에서는 NGINX가 접근할 리소스에 대해 적절한 context type이 설정되어야 합니다."
+        },
+        {
+            "question": "SELinux 환경에서 HTTP 요청이 거부될 경우 확인할 명령은?",
+            "options": ["ausearch -m avc -ts recent", "ls -Z", "getenforce", "위 모두", "해당 없음"],
+            "answer": 3,
+            "explanation": "SELinux 트러블슈팅 시 context 확인 및 거부 로그 확인이 필수입니다."
+        },
+        {
+            "question": "HTTPS 연결 시 \"ERR_CERT_DATE_INVALID\" 오류가 발생한 경우는?",
+            "options": ["포트 충돌", "DNS 설정 문제", "인증서 유효기간 만료", "gzip 설정 누락", "캐시 만료"],
+            "answer": 0,
+            "explanation": "인증서 유효기간이 만료되었을 경우 이 오류가 나타납니다."
+        },
+        {
+            "question": "클라이언트가 \"SSL handshake failed\" 메시지를 출력할 때 점검해야 할 것은?",
+            "options": ["listen 포트", "캐시 경로", "인증서 및 키 쌍의 유효성", "gzip 여부", "로깅 수준"],
+            "answer": 4,
+            "explanation": "인증서가 잘못되었거나 키와 일치하지 않으면 TLS 핸드셰이크 실패가 발생합니다."
+        },
+        {
+            "question": "TLS 설정에서 ssl_verify_client를 on으로 설정했을 때 예상되는 결과는?",
+            "options": ["서버 인증 생략", "클라이언트 인증 생략", "클라이언트 인증서가 없으면 연결 거부", "gzip 자동 활성화", "프록시 로깅 중단"],
+            "answer": 0,
+            "explanation": "클라이언트 인증서를 강제하는 설정입니다."
+        },
+        {
+            "question": "인증서가 PEM 형식이 아닐 경우 발생 가능한 문제는?",
+            "options": ["접근 로그 누락", "gzip 미적용", "TLS 연결 실패", "서버 자동 종료", "요청 URI 재정의"],
+            "answer": 3,
+            "explanation": "NGINX는 PEM 형식 인증서를 요구합니다. 다른 형식은 TLS 실패를 초래합니다."
+        },
+        {
+            "question": "ssl_certificate와 ssl_certificate_key 경로가 잘못되었을 경우 발생하는 현상은?",
+            "options": ["HTTP 요청으로 대체됨", "TLS 핸드셰이크 실패", "gzip 오류 발생", "캐시 무효화", "DNS 재전파"],
+            "answer": 1,
+            "explanation": "TLS에 필요한 파일이 없으면 연결 자체가 실패합니다."
+        },
+        {
+            "question": "HTTPS 접속 시 ERR_CERT_COMMON_NAME_INVALID 오류가 발생하는 원인은?",
+            "options": ["클라이언트 IP 차단", "gzip 설정 누락", "인증서의 Common Name이 요청한 도메인과 불일치", "DNS 루프", "SELinux 설정 부족"],
+            "answer": 3,
+            "explanation": "인증서의 CN(Common Name) 또는 SAN이 브라우저의 요청 호스트와 다를 경우 발생합니다."
+        },
+        {
+            "question": "ssl_certificate 파일 경로가 잘못되었을 때 설정 적용 시 나타나는 오류는?",
+            "options": ["403 Forbidden", "404 Not Found", "NGINX 재시작 실패 및 error.log에 파일 경로 오류", "gzip 압축 오류", "연결 유지 실패"],
+            "answer": 4,
+            "explanation": "설정 적용 시 인증서 경로가 유효하지 않으면 NGINX는 시작하지 않으며 오류가 error.log에 기록됩니다."
+        },
+        {
+            "question": "클라이언트 측에서 TLS 연결 시도 후 \"unknown CA\" 오류가 발생한다면?",
+            "options": ["서버의 공개키가 누락됨", "인증서 서명자가 신뢰되지 않음", "서버가 gzip을 비활성화함", "포트 바인딩 실패", "접속 제한 시간 초과"],
+            "answer": 1,
+            "explanation": "클라이언트는 신뢰하는 루트 CA로 서명되지 않은 인증서에 대해 이 오류를 출력합니다."
+        },
+        {
+            "question": "TLS 설정 변경 후 테스트를 위한 명령으로 적절한 것은?",
+            "options": ["curl -k https://example.com", "wget -qO- http://localhost", "openssl s_client -connect example.com:443", "dig example.com A", "ping example.com"],
+            "answer": 0,
+            "explanation": "openssl s_client는 TLS 연결 디버깅 및 인증서 정보 확인에 유용합니다."
+        },
+        {
+            "question": "다음 중 NGINX에서 클라이언트 접속 문제를 디버깅할 때 가장 유용한 로그는?",
+            "options": ["boot.log", "/var/log/nginx/access.log", "/etc/nginx/mime.types", "yum.log", "/proc/cpuinfo"],
+            "answer": 1,
+            "explanation": "access.log에는 요청된 URI, 클라이언트 IP, 응답 시간, 상태 코드 등이 기록되어 있습니다."
+        },
+        {
+            "question": "HTTP 상태 코드 504는 무엇을 의미하는가?",
+            "options": ["서버 응답 없음", "DNS 해결 실패", "게이트웨이 타임아웃 (백엔드 응답 지연)", "요청 본문 형식 오류", "인증 실패"],
+            "answer": 3,
+            "explanation": "504 Gateway Timeout은 백엔드 서버가 정해진 시간 내 응답을 하지 않았음을 나타냅니다."
+        },
+        {
+            "question": "다중 server 블록에서 요청이 의도한 블록이 아닌 다른 블록으로 전달된다면 가장 먼저 점검할 설정은?",
+            "options": ["listen 포트", "server_name 정확도 및 default_server 지정 여부", "location 블록 개수", "proxy_set_header", "access_log 경로"],
+            "answer": 1,
+            "explanation": "정확한 도메인 매칭이 되지 않으면 default_server가 요청을 처리할 수 있습니다."
+        },
+        {
+            "question": "NGINX가 실행 중인 것처럼 보이지만 실제 요청이 응답되지 않는다면 우선적으로 점검할 항목은?",
+            "options": ["로깅 포맷", "gzip 상태", "방화벽 상태 및 포트 열림 여부", "정적 파일 수", "mime.types 설정"],
+            "answer": 2,
+            "explanation": "서비스가 실행 중이라도 방화벽에서 포트를 차단하고 있다면 외부 접속은 차단됩니다."
+        },
+        {
+            "question": "다음 중 nginx -T 명령의 주요 기능은?",
+            "options": ["PID 재설정", "설정 파일 전체 병합 내용 출력", "프로세스 상태 표시", "SSL 재시작", "백엔드 서버 헬스체크"],
+            "answer": 1,
+            "explanation": "-T는 병합된 전체 설정을 출력하여 디버깅 및 설정 확인 시 유용합니다."
+        },
+        {
+            "question": "다음 중 NGINX 구동 실패 시 가장 먼저 확인해야 하는 파일은?",
+            "options": ["/etc/hosts", "/var/log/nginx/error.log", "/etc/nginx/mime.types", "/var/run/nginx.pid", "/etc/shadow"],
+            "answer": 1,
+            "explanation": "구동 실패 원인은 error.log에 가장 상세하게 기록됩니다."
         }
     ]
 }
