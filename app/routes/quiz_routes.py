@@ -51,6 +51,24 @@ def quiz(subject):
         
         if request.method == "POST":
             print("POST 요청 받음: ", request.form)
+            
+            # 모든 문제에 대해 답변했는지 확인
+            unanswered_questions = []
+            for idx, q in enumerate(questions):
+                question_key = f"question_{subject}_{idx}"
+                if question_key not in request.form:
+                    unanswered_questions.append(idx + 1)  # 1부터 시작하는 문제 번호
+            
+            # 부분적으로 답변하지 않은 경우 오류 메시지와 함께 퀴즈 화면으로 다시 리다이렉트
+            if unanswered_questions:
+                error_msg = f"미응답 문항: {', '.join(map(str, unanswered_questions))}. 모든 문항에 대해 답변해주세요."
+                return render_template('quiz.html', 
+                                     questions=questions, 
+                                     subject=subject,
+                                     subject_name=get_subject_name(subject),
+                                     quiz_time=Config.QUIZ_TIME,
+                                     error=error_msg)
+            
             score = 0
             results = []
             
