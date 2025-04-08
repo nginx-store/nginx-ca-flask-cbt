@@ -1310,7 +1310,7 @@ def get_quiz_subjects():
     ]
     return subjects
 
-def get_all_questions(max_questions=10):
+def get_all_questions(max_questions=120):
     """
     모든 챕터에서 랜덤하게 문제를 선택합니다.
     
