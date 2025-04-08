@@ -1,0 +1,51 @@
+# Python/Flask 가상 환경
+venv/
+env/
+ENV/
+
+# Python 캐시 파일
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Docker 관련 파일
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# 개발 환경 설정 파일
+.git
+.github
+.gitignore
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+.coverage
+htmlcov/
+.pytest_cache/
+.hypothesis/
+
+# 로그 및 임시 파일
+*.log
+tmp/
+temp/
+
+# 데이터베이스 파일
+*.db
+*.sqlite
+*.sqlite3
+
+# 빌드 폴더
+build/
+dist/
+*.egg-info/
+*.egg
+
+# 백업 파일
+*.bak
+*.swp
+*~

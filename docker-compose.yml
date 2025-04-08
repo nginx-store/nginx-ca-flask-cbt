@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  nginx-cbt-app:
+    build: .
+    container_name: nginx-cbt-app
+    ports:
+      - "5000:5000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=5000
+      - DEBUG=False
+      - SECRET_KEY=your-secure-key-here
+    volumes:
+      # 개발 중 코드 변경 사항을 바로 적용하기 위한 볼륨 매핑 (개발 환경에서만 사용)
+      # - ./app:/app/app
+    restart: unless-stopped
