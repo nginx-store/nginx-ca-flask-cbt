@@ -379,7 +379,7 @@ quiz_data = {
       "IP 기반 분산이 필요한 경우",
       "세션 정보를 유지해야 할 때"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "least_conn은 활성 연결 수가 가장 적은 서버에 요청을 보내므로 요청 처리 시간이 불규칙한 환경에 적합합니다."
   },
   {
@@ -403,7 +403,7 @@ quiz_data = {
       "요청의 헤더를 추가",
       "정규 표현식 설정"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "proxy_cache_path는 캐시 저장 위치, zone 이름, 크기 등의 설정을 담당합니다."
   },
   {
@@ -427,7 +427,7 @@ quiz_data = {
       "upstream_mirror",
       "split_clients"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "mirror directive는 요청을 메인 서버 외에 미러 서버에도 복사 전송할 수 있도록 설정합니다."
   },
   {
@@ -437,9 +437,9 @@ quiz_data = {
       "ip_hash",
       "server backend1 weight=3;",
       "least_conn=3;",
-      "load balance weight"
+      "proxy_pass"
     ],
-    "answer": 4,
+    "answer": 2,
     "explanation": "weight를 설정하여 특정 서버에 더 많은 요청이 분산되도록 할 수 있습니다."
   },
   {
@@ -451,7 +451,7 @@ quiz_data = {
       "proxy_ssl",
       "server_tokens"
     ],
-    "answer": 4,
+    "answer": 2,
     "explanation": "HTTPS는 ssl_certificate와 ssl_certificate_key가 필수입니다."
   },
   {
@@ -463,7 +463,7 @@ quiz_data = {
       "리버스 프록시 전용",
       "HTML 직접 렌더링"
     ],
-    "answer": 4,
+    "answer": 2,
     "explanation": "이벤트 기반 아키텍처는 NGINX가 높은 동시성 처리 성능을 발휘할 수 있게 합니다."
   },
   {
@@ -563,7 +563,7 @@ quiz_data = {
     "explanation": "ip_hash는 같은 클라이언트 IP를 동일한 백엔드 서버에 연결하여 세션 유지를 보장합니다."
   },
   {
-    "question": "다음 중 NGINX에서 동작 중인 서버에서 특정 서버를 안전하게 제외하는 방법은?",
+    "question": "다음 중 NGINX에서 실패한 서버를 로드밸런싱에서 올바르게 제외하는 지시문?",
     "options": [
       "server backend down;",
       "remove backend;",
@@ -631,8 +631,8 @@ quiz_data = {
       "304 Not Modified 응답 ",
       "308 Permanent Redirect 응답"
     ],
-    "answer": 3,
-    "explanation": "기본적으로 add_header는 일부 상태 코드에만 적용됩니다. always 키워드를 사용해야 모든 응답 코드에 적용할 수 있습니다."
+    "answer": 2,
+    "explanation": "기본적으로 add_header는 200, 204, 301, 302, 304 상태 코드에만 적용됩니다. always 키워드를 사용해야 모든 응답 코드에 적용할 수 있습니다."
   },
   {
     "question": "NGINX에서 정적 파일을 제공할 때 사용하는 directive는?",
@@ -732,549 +732,729 @@ quiz_data = {
   }
     ],
     "F5N3": [
-        {
+          {
             "question": "nginx -s stop 명령이 수행하는 작업은?",
             "options": [
-                "설정 파일을 테스트하고 적용",
-                "설정을 리로드",
-                "NGINX를 비정상 종료",
-                "워커 프로세스만 종료",
-                "마스터 및 워커 프로세스를 정상 종료"
+              "마스터 및 워커 프로세스를 정상 종료",
+              "설정 파일을 테스트하고 적용",
+              "설정을 리로드",
+              "NGINX를 비정상 종료",
+              "워커 프로세스만 종료"
             ],
-            "answer": 4,
+            "answer": 0,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "설정을 적용하기 전에 문법 오류가 있는지 확인하려면 어떤 명령을 사용해야 하는가?",
             "options": [
-                "nginx --check",
-                "nginx -s test",
-                "nginx -t",
-                "nginx configtest",
-                "nginx -c"
+              "nginx -t",
+              "nginx --check",
+              "nginx -s test",
+              "nginx configtest",
+              "nginx -c"
             ],
-            "answer": 2,
+            "answer": 0,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "kill -HUP <nginx pid> 시그널의 효과는?",
             "options": [
-                "NGINX 프로세스 강제 종료",
-                "NGINX 완전 재시작",
-                "설정을 다시 로드",
-                "에러 로그 초기화",
-                "리스닝 포트 변경"
+              "설정을 다시 로드",
+              "NGINX 프로세스 강제 종료",
+              "NGINX 완전 재시작",
+              "에러 로그 초기화",
+              "리스닝 포트 변경"
             ],
-            "answer": 2,
+            "answer": 0,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "nginx -s reload와 nginx -s stop && nginx의 주요 차이는?",
             "options": [
-                "로그 디렉토리를 다르게 사용",
-                "SSL 핸드셰이크 차이",
-                "후자는 다운타임이 발생함",
-                "전자는 PID를 변경함",
-                "둘 다 완전한 재시작"
+              "후자는 다운타임이 발생함",
+              "로그 디렉토리를 다르게 사용",
+              "SSL 핸드셰이크 차이",
+              "전자는 PID를 변경함",
+              "둘 다 완전한 재시작"
             ],
-            "answer": 2,
+            "answer": 0,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "NGINX를 수동으로 종료하려면 어떤 명령이 가장 적절한가?",
             "options": [
-                "nginx --exit",
-                "systemctl stop nginx",
-                "nginx -s restart",
-                "nginx -z",
-                "nginx -s kill"
+              "systemctl stop nginx",
+              "nginx --exit",
+              "nginx -s restart",
+              "nginx -z",
+              "nginx -s kill"
             ],
-            "answer": 1,
+            "answer": 0,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "403 Forbidden 오류의 일반적인 원인은?",
             "options": [
-                "프록시 백엔드 연결 실패",
-                "gzip 설정 오류",
-                "파일 권한 부족",
-                "인증서 만료",
-                "서버 이름 불일치"
+              "파일 권한 부족",
+              "프록시 백엔드 연결 실패",
+              "gzip 설정 오류",
+              "인증서 만료",
+              "서버 이름 불일치"
             ],
-            "answer": 2,
+            "answer": 0,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "HTTP 502 Bad Gateway 오류의 원인은?",
             "options": [
-                "설정 파일에 문법 오류",
-                "TLS 핸드셰이크 실패",
-                "백엔드 서버 미응답",
-                "파일이 존재하지 않음",
-                "리스닝 포트 누락"
+              "설정 파일에 문법 오류",
+              "백엔드 서버 미응답",
+              "TLS 핸드셰이크 실패",
+              "파일이 존재하지 않음",
+              "리스닝 포트 누락"
             ],
-            "answer": 2,
+            "answer": 1,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "access.log에서 $status가 499인 의미는?",
             "options": [
-                "요청이 정상적으로 완료됨",
-                "서버 에러 발생",
-                "클라이언트가 연결을 중단함",
-                "캐시에서 응답",
-                "SSL 핸드셰이크 실패"
+              "요청이 정상적으로 완료됨",
+              "클라이언트가 연결을 중단함",
+              "서버 에러 발생",
+              "캐시에서 응답",
+              "SSL 핸드셰이크 실패"
             ],
-            "answer": 2,
+            "answer": 1,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "NGINX 시작 시 \"bind() to 0.0.0.0:80 failed\" 에러가 발생했다면?",
             "options": [
-                "포트가 이미 사용 중임",
-                "인증서가 만료됨",
-                "gzip 설정 누락",
-                "루트 디렉토리 오류",
-                "PID 파일이 없음"
-            ],
-            "answer": 0,
-            "explanation": ""
-        },
-        {
-            "question": "복수의 가상 호스트에서 동일한 포트를 사용할 경우 충돌을 방지하려면?",
-            "options": [
-                "각 server 블록에 default_server 지정",
-                "listen 포트를 다르게 설정",
-                "SSL 설정을 모두 비활성화",
-                "access_log를 공통으로 지정",
-                "error_log를 주석 처리"
-            ],
-            "answer": 0,
-            "explanation": ""
-        },
-        {
-            "question": "add_header 설정이 location 블록에서 적용되지 않는 이유는?",
-            "options": [
-                "정규식 location 우선순위",
-                "gzip 압축과 충돌",
-                "add_header는 if 블록에서만 적용",
-                "부모 블록에서 설정되어 override 불가",
-                "응답 코드가 200이 아니기 때문"
-            ],
-            "answer": 4,
-            "explanation": ""
-        },
-        {
-            "question": "여러 location 블록이 있는 경우 NGINX가 선택하는 기준은?",
-            "options": [
-                "정의 순서",
-                "정규 표현식이 우선",
-                "짧은 URI 우선",
-                "설정 파일 이름 우선",
-                "서버 이름"
+              "인증서가 만료됨",
+              "포트가 이미 사용 중임",
+              "gzip 설정 누락",
+              "루트 디렉토리 오류",
+              "PID 파일이 없음"
             ],
             "answer": 1,
             "explanation": ""
-        },
-        {
+          },
+          {
+            "question": "복수의 가상 호스트에서 동일한 포트를 사용할 경우 충돌을 방지하려면?",
+            "options": [
+              "listen 포트를 다르게 설정",
+              "(하나의) server 블록만 default_server로 지정하고, 나머지는 server_name을 정확히 설정",
+              "SSL 설정을 모두 비활성화",
+              "access_log를 공통으로 지정",
+              "error_log를 주석 처리"
+            ],
+            "answer": 1,
+            "explanation": ""
+          },
+          {
+            "question": "add_header 설정이 location 블록에서 적용되지 않는 이유는?",
+            "options": [
+              "정규식 location 우선순위",
+              "응답 코드가 200이 아니기 때문",
+              "gzip 압축과 충돌",
+              "add_header는 if 블록에서만 적용",
+              "부모 블록에서 설정되어 override 불가"
+            ],
+            "answer": 1,
+            "explanation": ""
+          },
+          {
+            "question": "여러 location 블록이 있는 경우 NGINX가 선택하는 기준은?",
+            "options": [
+              "정의 순서",
+              "정규 표현식이 우선",
+              "짧은 URI 우선",
+              "설정 파일 이름 우선",
+              "서버 이름"
+            ],
+            "answer": 1,
+            "explanation": ""
+          },
+          {
             "question": "클라이언트가 요청을 했지만 응답이 지연될 때 확인해야 할 항목은?",
             "options": [
-                "리스닝 포트",
-                "gzip 설정",
-                "백엔드 서버 응답 시간",
-                "SSL 인증서 체인",
-                "에러 코드"
+              "리스닝 포트",
+              "gzip 설정",
+              "백엔드 서버 응답 시간",
+              "SSL 인증서 체인",
+              "에러 코드"
             ],
             "answer": 2,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "설정은 문제없는데 서비스가 시작되지 않는다면 SELinux 관련 항목으로 무엇을 점검해야 하나?",
             "options": [
-                "서비스 포트",
-                "context type (예: httpd_sys_content_t)",
-                "worker_processes 수",
-                "gzip 설정 여부",
-                "upstream 이름"
+              "서비스 포트",
+              "worker_processes 수",
+              "context type (예: httpd_sys_content_t)",
+              "gzip 설정 여부",
+              "upstream 이름"
             ],
-            "answer": 1,
+            "answer": 2,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "SELinux 환경에서 HTTP 요청이 거부될 경우 확인할 명령은?",
             "options": [
-                "ausearch -m avc -ts recent",
-                "ls -Z",
-                "getenforce",
-                "위 모두",
-                "해당 없음"
+              "ausearch -m avc -ts recent",
+              "ls -Z",
+              "위 모두",
+              "getenforce",
+              "해당 없음"
             ],
-            "answer": 3,
+            "answer": 2,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "HTTPS 연결 시 “ERR_CERT_DATE_INVALID” 오류가 발생한 경우는?",
             "options": [
-                "포트 충돌",
-                "DNS 설정 문제",
-                "인증서 유효기간 만료",
-                "gzip 설정 누락",
-                "캐시 만료"
+              "포트 충돌",
+              "DNS 설정 문제",
+              "인증서 유효기간 만료",
+              "gzip 설정 누락",
+              "캐시 만료"
             ],
             "answer": 2,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "클라이언트가 \"SSL handshake failed\" 메시지를 출력할 때 점검해야 할 것은?",
             "options": [
-                "listen 포트",
-                "캐시 경로",
-                "인증서 및 키 쌍의 유효성",
-                "gzip 여부",
-                "로깅 수준"
+              "listen 포트",
+              "캐시 경로",
+              "인증서 및 키 쌍의 유효성",
+              "gzip 여부",
+              "로깅 수준"
             ],
             "answer": 2,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "TLS 설정에서 ssl_verify_client를 on으로 설정했을 때 예상되는 결과는?",
             "options": [
-                "서버 인증 생략",
-                "클라이언트 인증 생략",
-                "클라이언트 인증서가 없으면 연결 거부",
-                "gzip 자동 활성화",
-                "프록시 로깅 중단"
+              "서버 인증 생략",
+              "클라이언트 인증 생략",
+              "클라이언트 인증서가 없으면 연결 거부",
+              "gzip 자동 활성화",
+              "프록시 로깅 중단"
             ],
             "answer": 2,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "인증서가 PEM 형식이 아닐 경우 발생 가능한 문제는?",
             "options": [
-                "접근 로그 누락",
-                "gzip 미적용",
-                "TLS 연결 실패",
-                "서버 자동 종료",
-                "요청 URI 재정의"
+              "접근 로그 누락",
+              "gzip 미적용",
+              "서버 자동 종료",
+              "TLS 연결 실패",
+              "요청 URI 재정의"
             ],
-            "answer": 2,
+            "answer": 3,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "ssl_certificate와 ssl_certificate_key 경로가 잘못되었을 경우 발생하는 현상은?",
             "options": [
-                "HTTP 요청으로 대체됨",
-                "TLS 핸드셰이크 실패",
-                "gzip 오류 발생",
-                "캐시 무효화",
-                "DNS 재전파"
+              "HTTP 요청으로 대체됨",
+              "gzip 오류 발생",
+              "캐시 무효화",
+              "TLS 핸드셰이크 실패",
+              "DNS 재전파"
             ],
-            "answer": 1,
+            "answer": 3,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "HTTPS 접속 시 ERR_CERT_COMMON_NAME_INVALID 오류가 발생하는 원인은?",
             "options": [
-                "클라이언트 IP 차단",
-                "gzip 설정 누락",
-                "인증서의 Common Name이 요청한 도메인과 불일치",
-                "DNS 루프",
-                "SELinux 설정 부족"
+              "클라이언트 IP 차단",
+              "gzip 설정 누락",
+              "DNS 루프",
+              "인증서의 Common Name이 요청한 도메인과 불일치",
+              "SELinux 설정 부족"
             ],
-            "answer": 2,
+            "answer": 3,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "ssl_certificate 파일 경로가 잘못되었을 때 설정 적용 시 나타나는 오류는?",
             "options": [
-                "403 Forbidden",
-                "404 Not Found",
-                "NGINX 재시작 실패 및 error.log에 파일 경로 오류",
-                "gzip 압축 오류",
-                "연결 유지 실패"
+              "403 Forbidden",
+              "404 Not Found",
+              "gzip 압축 오류",
+              "NGINX 재시작 실패 및 error.log에 파일 경로 오류",
+              "연결 유지 실패"
             ],
-            "answer": 2,
+            "answer": 3,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "클라이언트 측에서 TLS 연결 시도 후 “unknown CA” 오류가 발생한다면?",
             "options": [
-                "서버의 공개키가 누락됨",
-                "인증서 서명자가 신뢰되지 않음",
-                "서버가 gzip을 비활성화함",
-                "포트 바인딩 실패",
-                "접속 제한 시간 초과"
+              "서버의 공개키가 누락됨",
+              "서버가 gzip을 비활성화함",
+              "포트 바인딩 실패",
+              "인증서 서명자가 신뢰되지 않음",
+              "접속 제한 시간 초과"
             ],
-            "answer": 1,
+            "answer": 3,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "TLS 설정 변경 후 테스트를 위한 명령으로 적절한 것은?",
             "options": [
-                "curl -k https://example.com",
-                "wget -qO- http://localhost",
-                "openssl s_client -connect example.com:443",
-                "dig example.com A",
-                "ping example.com"
+              "curl -k https://example.com",
+              "wget -qO- http://localhost",
+              "dig example.com A",
+              "openssl s_client -connect example.com:443",
+              "ping example.com"
             ],
-            "answer": 2,
+            "answer": 3,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "다음 중 NGINX에서 클라이언트 접속 문제를 디버깅할 때 가장 유용한 로그는?",
             "options": [
-                "boot.log",
-                "/var/log/nginx/access.log",
-                "/etc/nginx/mime.types",
-                "yum.log",
-                "/proc/cpuinfo"
+              "boot.log",
+              "/etc/nginx/mime.types",
+              "yum.log",
+              "/proc/cpuinfo",
+              "/var/log/nginx/access.log"
             ],
-            "answer": 1,
+            "answer": 4,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "HTTP 상태 코드 504는 무엇을 의미하는가?",
             "options": [
-                "서버 응답 없음",
-                "DNS 해결 실패",
-                "게이트웨이 타임아웃 (백엔드 응답 지연)",
-                "요청 본문 형식 오류",
-                "인증 실패"
+              "서버 응답 없음",
+              "DNS 해결 실패",
+              "요청 본문 형식 오류",
+              "인증 실패",
+              "게이트웨이 타임아웃 (백엔드 응답 지연)"
             ],
-            "answer": 2,
+            "answer": 4,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "다중 server 블록에서 요청이 의도한 블록이 아닌 다른 블록으로 전달된다면 가장 먼저 점검할 설정은?",
             "options": [
-                "listen 포트",
-                "server_name 정확도 및 default_server 지정 여부",
-                "location 블록 개수",
-                "proxy_set_header",
-                "access_log 경로"
+              "listen 포트",
+              "location 블록 개수",
+              "proxy_set_header",
+              "access_log 경로",
+              "server_name 정확도 및 default_server 지정 여부"
             ],
-            "answer": 1,
+            "answer": 4,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "NGINX가 실행 중인 것처럼 보이지만 실제 요청이 응답되지 않는다면 우선적으로 점검할 항목은?",
             "options": [
-                "로깅 포맷",
-                "gzip 상태",
-                "방화벽 상태 및 포트 열림 여부",
-                "정적 파일 수",
-                "mime.types 설정"
+              "로깅 포맷",
+              "gzip 상태",
+              "정적 파일 수",
+              "mime.types 설정",
+              "방화벽 상태 및 포트 열림 여부"
             ],
-            "answer": 2,
+            "answer": 4,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "다음 중 nginx -T 명령의 주요 기능은?",
             "options": [
-                "PID 재설정",
-                "설정 파일 전체 병합 내용 출력",
-                "프로세스 상태 표시",
-                "SSL 재시작",
-                "백엔드 서버 헬스체크"
+              "PID 재설정",
+              "프로세스 상태 표시",
+              "SSL 재시작",
+              "백엔드 서버 헬스체크",
+              "설정 파일 전체 병합 내용 출력"
             ],
-            "answer": 1,
+            "answer": 4,
             "explanation": ""
-        },
-        {
+          },
+          {
             "question": "다음 중 NGINX 구동 실패 시 가장 먼저 확인해야 하는 파일은?",
             "options": [
-                "/etc/hosts",
-                "/var/log/nginx/error.log",
-                "/etc/nginx/mime.types",
-                "/var/run/nginx.pid",
-                "/etc/shadow"
+              "/etc/hosts",
+              "/etc/nginx/mime.types",
+              "/var/run/nginx.pid",
+              "/etc/shadow",
+              "/var/log/nginx/error.log"
             ],
-            "answer": 1,
+            "answer": 4,
             "explanation": ""
-        }
+          }
     ],
     "F5N4": [
-        {
-            "question": "nginx -s stop 명령이 수행하는 작업은?",
-            "options": ["설정 파일을 테스트하고 적용", "설정을 리로드", "NGINX를 비정상 종료", "워커 프로세스만 종료", "마스터 및 워커 프로세스를 정상 종료"],
-            "answer": 4,
-            "explanation": "nginx -s stop은 마스터와 워커 프로세스를 모두 종료시킵니다."
-        },
-        {
-            "question": "설정을 적용하기 전에 문법 오류가 있는지 확인하려면 어떤 명령을 사용해야 하는가?",
-            "options": ["nginx --check", "nginx -s test", "nginx -t", "nginx configtest", "nginx -c"],
-            "answer": 2,
-            "explanation": "nginx -t는 설정의 문법 및 유효성을 확인합니다."
-        },
-        {
-            "question": "kill -HUP <nginx pid> 시그널의 효과는?",
-            "options": ["NGINX 프로세스 강제 종료", "NGINX 완전 재시작", "설정을 다시 로드", "에러 로그 초기화", "리스닝 포트 변경"],
-            "answer": 2,
-            "explanation": "HUP 시그널은 설정을 다시 로드하며 프로세스를 재시작하지 않습니다."
-        },
-        {
-            "question": "nginx -s reload와 nginx -s stop && nginx의 주요 차이는?",
-            "options": ["로그 디렉토리를 다르게 사용", "SSL 핸드셰이크 차이", "후자는 다운타임이 발생함", "전자는 PID를 변경함", "둘 다 완전한 재시작"],
-            "answer": 2,
-            "explanation": "reload는 무중단 구성 반영이고, stop && start는 일시적으로 중단됩니다."
-        },
-        {
-            "question": "NGINX를 수동으로 종료하려면 어떤 명령이 가장 적절한가?",
-            "options": ["nginx --exit", "systemctl stop nginx", "nginx -s restart", "nginx -z", "nginx -s kill"],
-            "answer": 1,
-            "explanation": "systemd 기반 시스템에서는 systemctl stop nginx를 통해 서비스 종료합니다."
-        },
-        {
-            "question": "403 Forbidden 오류의 일반적인 원인은?",
-            "options": ["프록시 백엔드 연결 실패", "gzip 설정 오류", "파일 권한 부족", "인증서 만료", "서버 이름 불일치"],
-            "answer": 2,
-            "explanation": "접근 권한이 없으면 403 오류가 발생합니다."
-        },
-        {
-            "question": "HTTP 502 Bad Gateway 오류의 원인은?",
-            "options": ["설정 파일에 문법 오류", "TLS 핸드셰이크 실패", "백엔드 서버 미응답", "파일이 존재하지 않음", "리스닝 포트 누락"],
-            "answer": 0,
-            "explanation": "502는 프록시된 서버가 응답하지 않거나 오류를 반환할 때 발생합니다."
-        },
-        {
-            "question": "access.log에서 $status가 499인 의미는?",
-            "options": ["요청이 정상적으로 완료됨", "서버 에러 발생", "클라이언트가 연결을 중단함", "캐시에서 응답", "SSL 핸드셰이크 실패"],
-            "answer": 4,
-            "explanation": "499는 클라이언트가 응답을 받기 전 연결을 종료했을 때 기록됩니다."
-        },
-        {
-            "question": "NGINX 시작 시 \"bind() to 0.0.0.0:80 failed\" 에러가 발생했다면?",
-            "options": ["포트가 이미 사용 중임", "인증서가 만료됨", "gzip 설정 누락", "루트 디렉토리 오류", "PID 파일이 없음"],
-            "answer": 0,
-            "explanation": "이미 다른 프로세스가 해당 포트를 사용 중일 경우 bind 오류가 납니다."
-        },
-        {
-            "question": "복수의 가상 호스트에서 동일한 포트를 사용할 경우 충돌을 방지하려면?",
-            "options": ["각 server 블록에 default_server 지정", "listen 포트를 다르게 설정", "SSL 설정을 모두 비활성화", "access_log를 공통으로 지정", "error_log를 주석 처리"],
-            "answer": 0,
-            "explanation": "동일 포트에 여러 서버 블록이 있을 때, 하나는 기본 서버로 지정해야 충돌이 발생하지 않습니다."
-        },
-        {
-            "question": "add_header 설정이 location 블록에서 적용되지 않는 이유는?",
-            "options": ["정규식 location 우선순위", "gzip 압축과 충돌", "add_header는 if 블록에서만 적용", "부모 블록에서 설정되어 override 불가", "응답 코드가 200이 아니기 때문"],
-            "answer": 3,
-            "explanation": "add_header는 기본적으로 200, 204, 301, 302 응답에만 적용됩니다."
-        },
-        {
-            "question": "여러 location 블록이 있는 경우 NGINX가 선택하는 기준은?",
-            "options": ["정의 순서", "정규 표현식이 우선", "짧은 URI 우선", "설정 파일 이름 우선", "서버 이름"],
-            "answer": 1,
-            "explanation": "정규표현식 location (~, ~*)은 일반 prefix location보다 우선합니다."
-        },
-        {
-            "question": "클라이언트가 요청을 했지만 응답이 지연될 때 확인해야 할 항목은?",
-            "options": ["리스닝 포트", "gzip 설정", "백엔드 서버 응답 시간", "SSL 인증서 체인", "에러 코드"],
-            "answer": 4,
-            "explanation": "응답 지연은 대개 백엔드 서버 성능 문제에서 기인합니다."
-        },
-        {
-            "question": "설정은 문제없는데 서비스가 시작되지 않는다면 SELinux 관련 항목으로 무엇을 점검해야 하나?",
-            "options": ["서비스 포트", "context type (예: httpd_sys_content_t)", "worker_processes 수", "gzip 설정 여부", "upstream 이름"],
-            "answer": 1,
-            "explanation": "SELinux에서는 NGINX가 접근할 리소스에 대해 적절한 context type이 설정되어야 합니다."
-        },
-        {
-            "question": "SELinux 환경에서 HTTP 요청이 거부될 경우 확인할 명령은?",
-            "options": ["ausearch -m avc -ts recent", "ls -Z", "getenforce", "위 모두", "해당 없음"],
-            "answer": 3,
-            "explanation": "SELinux 트러블슈팅 시 context 확인 및 거부 로그 확인이 필수입니다."
-        },
-        {
-            "question": "HTTPS 연결 시 \"ERR_CERT_DATE_INVALID\" 오류가 발생한 경우는?",
-            "options": ["포트 충돌", "DNS 설정 문제", "인증서 유효기간 만료", "gzip 설정 누락", "캐시 만료"],
-            "answer": 0,
-            "explanation": "인증서 유효기간이 만료되었을 경우 이 오류가 나타납니다."
-        },
-        {
-            "question": "클라이언트가 \"SSL handshake failed\" 메시지를 출력할 때 점검해야 할 것은?",
-            "options": ["listen 포트", "캐시 경로", "인증서 및 키 쌍의 유효성", "gzip 여부", "로깅 수준"],
-            "answer": 4,
-            "explanation": "인증서가 잘못되었거나 키와 일치하지 않으면 TLS 핸드셰이크 실패가 발생합니다."
-        },
-        {
-            "question": "TLS 설정에서 ssl_verify_client를 on으로 설정했을 때 예상되는 결과는?",
-            "options": ["서버 인증 생략", "클라이언트 인증 생략", "클라이언트 인증서가 없으면 연결 거부", "gzip 자동 활성화", "프록시 로깅 중단"],
-            "answer": 0,
-            "explanation": "클라이언트 인증서를 강제하는 설정입니다."
-        },
-        {
-            "question": "인증서가 PEM 형식이 아닐 경우 발생 가능한 문제는?",
-            "options": ["접근 로그 누락", "gzip 미적용", "TLS 연결 실패", "서버 자동 종료", "요청 URI 재정의"],
-            "answer": 3,
-            "explanation": "NGINX는 PEM 형식 인증서를 요구합니다. 다른 형식은 TLS 실패를 초래합니다."
-        },
-        {
-            "question": "ssl_certificate와 ssl_certificate_key 경로가 잘못되었을 경우 발생하는 현상은?",
-            "options": ["HTTP 요청으로 대체됨", "TLS 핸드셰이크 실패", "gzip 오류 발생", "캐시 무효화", "DNS 재전파"],
-            "answer": 1,
-            "explanation": "TLS에 필요한 파일이 없으면 연결 자체가 실패합니다."
-        },
-        {
-            "question": "HTTPS 접속 시 ERR_CERT_COMMON_NAME_INVALID 오류가 발생하는 원인은?",
-            "options": ["클라이언트 IP 차단", "gzip 설정 누락", "인증서의 Common Name이 요청한 도메인과 불일치", "DNS 루프", "SELinux 설정 부족"],
-            "answer": 3,
-            "explanation": "인증서의 CN(Common Name) 또는 SAN이 브라우저의 요청 호스트와 다를 경우 발생합니다."
-        },
-        {
-            "question": "ssl_certificate 파일 경로가 잘못되었을 때 설정 적용 시 나타나는 오류는?",
-            "options": ["403 Forbidden", "404 Not Found", "NGINX 재시작 실패 및 error.log에 파일 경로 오류", "gzip 압축 오류", "연결 유지 실패"],
-            "answer": 4,
-            "explanation": "설정 적용 시 인증서 경로가 유효하지 않으면 NGINX는 시작하지 않으며 오류가 error.log에 기록됩니다."
-        },
-        {
-            "question": "클라이언트 측에서 TLS 연결 시도 후 \"unknown CA\" 오류가 발생한다면?",
-            "options": ["서버의 공개키가 누락됨", "인증서 서명자가 신뢰되지 않음", "서버가 gzip을 비활성화함", "포트 바인딩 실패", "접속 제한 시간 초과"],
-            "answer": 1,
-            "explanation": "클라이언트는 신뢰하는 루트 CA로 서명되지 않은 인증서에 대해 이 오류를 출력합니다."
-        },
-        {
-            "question": "TLS 설정 변경 후 테스트를 위한 명령으로 적절한 것은?",
-            "options": ["curl -k https://example.com", "wget -qO- http://localhost", "openssl s_client -connect example.com:443", "dig example.com A", "ping example.com"],
-            "answer": 0,
-            "explanation": "openssl s_client는 TLS 연결 디버깅 및 인증서 정보 확인에 유용합니다."
-        },
-        {
-            "question": "다음 중 NGINX에서 클라이언트 접속 문제를 디버깅할 때 가장 유용한 로그는?",
-            "options": ["boot.log", "/var/log/nginx/access.log", "/etc/nginx/mime.types", "yum.log", "/proc/cpuinfo"],
-            "answer": 1,
-            "explanation": "access.log에는 요청된 URI, 클라이언트 IP, 응답 시간, 상태 코드 등이 기록되어 있습니다."
-        },
-        {
-            "question": "HTTP 상태 코드 504는 무엇을 의미하는가?",
-            "options": ["서버 응답 없음", "DNS 해결 실패", "게이트웨이 타임아웃 (백엔드 응답 지연)", "요청 본문 형식 오류", "인증 실패"],
-            "answer": 3,
-            "explanation": "504 Gateway Timeout은 백엔드 서버가 정해진 시간 내 응답을 하지 않았음을 나타냅니다."
-        },
-        {
-            "question": "다중 server 블록에서 요청이 의도한 블록이 아닌 다른 블록으로 전달된다면 가장 먼저 점검할 설정은?",
-            "options": ["listen 포트", "server_name 정확도 및 default_server 지정 여부", "location 블록 개수", "proxy_set_header", "access_log 경로"],
-            "answer": 1,
-            "explanation": "정확한 도메인 매칭이 되지 않으면 default_server가 요청을 처리할 수 있습니다."
-        },
-        {
-            "question": "NGINX가 실행 중인 것처럼 보이지만 실제 요청이 응답되지 않는다면 우선적으로 점검할 항목은?",
-            "options": ["로깅 포맷", "gzip 상태", "방화벽 상태 및 포트 열림 여부", "정적 파일 수", "mime.types 설정"],
-            "answer": 2,
-            "explanation": "서비스가 실행 중이라도 방화벽에서 포트를 차단하고 있다면 외부 접속은 차단됩니다."
-        },
-        {
-            "question": "다음 중 nginx -T 명령의 주요 기능은?",
-            "options": ["PID 재설정", "설정 파일 전체 병합 내용 출력", "프로세스 상태 표시", "SSL 재시작", "백엔드 서버 헬스체크"],
-            "answer": 1,
-            "explanation": "-T는 병합된 전체 설정을 출력하여 디버깅 및 설정 확인 시 유용합니다."
-        },
-        {
-            "question": "다음 중 NGINX 구동 실패 시 가장 먼저 확인해야 하는 파일은?",
-            "options": ["/etc/hosts", "/var/log/nginx/error.log", "/etc/nginx/mime.types", "/var/run/nginx.pid", "/etc/shadow"],
-            "answer": 1,
-            "explanation": "구동 실패 원인은 error.log에 가장 상세하게 기록됩니다."
-        }
-    ]
+  {
+    "question": "nginx -s stop 명령이 수행하는 작업은?",
+    "options": [
+      "마스터와 워커 프로세스를 모두 정상 종료",
+      "설정 파일을 테스트하고 적용",
+      "설정을 리로드",
+      "NGINX를 비정상 종료",
+      "워커 프로세스만 종료"
+    ],
+    "answer": 0,
+    "explanation": "nginx -s stop은 마스터와 워커 프로세스를 모두 종료시킵니다."
+  },
+  {
+    "question": "설정을 적용하기 전에 문법 오류가 있는지 확인하려면 어떤 명령을 사용해야 하는가?",
+    "options": [
+      "nginx -t",
+      "nginx --check",
+      "nginx -s test",
+      "nginx configtest",
+      "nginx -c"
+    ],
+    "answer": 0,
+    "explanation": "nginx -t는 설정의 문법 및 유효성을 확인합니다."
+  },
+  {
+    "question": "kill -HUP <nginx pid> 시그널의 효과는?",
+    "options": [
+      "설정을 다시 로드",
+      "NGINX 프로세스 강제 종료",
+      "NGINX 완전 재시작",
+      "에러 로그 초기화",
+      "리스닝 포트 변경"
+    ],
+    "answer": 0,
+    "explanation": "HUP 시그널은 설정을 다시 로드하며 프로세스를 재시작하지 않습니다."
+  },
+  {
+    "question": "nginx -s reload와 nginx -s stop && nginx의 주요 차이는?",
+    "options": [
+      "후자는 다운타임이 발생함",
+      "로그 디렉토리를 다르게 사용",
+      "SSL 핸드셰이크 차이",
+      "전자는 PID를 변경함",
+      "둘 다 완전한 재시작"
+    ],
+    "answer": 0,
+    "explanation": "reload는 무중단 구성 반영이고, stop && start는 일시적으로 중단됩니다."
+  },
+  {
+    "question": "NGINX를 수동으로 종료하려면 어떤 명령이 가장 적절한가?",
+    "options": [
+      "systemctl stop nginx",
+      "nginx --exit",
+      "nginx -s restart",
+      "nginx -z",
+      "nginx -s kill"
+    ],
+    "answer": 0,
+    "explanation": "systemd 기반 시스템에서는 systemctl stop nginx를 통해 서비스 종료합니다."
+  },
+  {
+    "question": "403 Forbidden 오류의 일반적인 원인은?",
+    "options": [
+      "파일 권한 부족",
+      "프록시 백엔드 연결 실패",
+      "gzip 설정 오류",
+      "인증서 만료",
+      "서버 이름 불일치"
+    ],
+    "answer": 0,
+    "explanation": "접근 권한이 없으면 403 오류가 발생합니다."
+  },
+  {
+    "question": "HTTP 502 Bad Gateway 오류의 원인은?",
+    "options": [
+      "설정 파일에 문법 오류",
+      "백엔드 서버 미응답",
+      "TLS 핸드셰이크 실패",
+      "파일이 존재하지 않음",
+      "리스닝 포트 누락"
+    ],
+    "answer": 1,
+    "explanation": "502는 프록시된 서버가 응답하지 않거나 오류를 반환할 때 발생합니다."
+  },
+  {
+    "question": "access.log에서 $status가 499인 의미는?",
+    "options": [
+      "요청이 정상적으로 완료됨",
+      "클라이언트가 연결을 중단함",
+      "서버 에러 발생",
+      "캐시에서 응답",
+      "SSL 핸드셰이크 실패"
+    ],
+    "answer": 1,
+    "explanation": "499는 클라이언트가 응답을 받기 전 연결을 종료했을 때 기록됩니다."
+  },
+  {
+    "question": "NGINX 시작 시 \"bind() to 0.0.0.0:80 failed\" 에러가 발생했다면?",
+    "options": [
+      "인증서가 만료됨",
+      "포트가 이미 사용 중임",
+      "gzip 설정 누락",
+      "루트 디렉토리 오류",
+      "PID 파일이 없음"
+    ],
+    "answer": 1,
+    "explanation": "이미 다른 프로세스가 해당 포트를 사용 중일 경우 bind 오류가 납니다."
+  },
+  {
+    "question": "복수의 가상 호스트에서 동일한 포트를 사용할 경우 충돌을 방지하려면?",
+    "options": [
+      "listen 포트를 다르게 설정",
+      "(하나만) server 블록에 default_server를 지정, 나머지는 server_name으로 구분",
+      "SSL 설정을 모두 비활성화",
+      "access_log를 공통으로 지정",
+      "error_log를 주석 처리"
+    ],
+    "answer": 1,
+    "explanation": "동일 포트에 여러 서버 블록이 있을 때, (하나만) default_server로 지정해야 충돌이 없습니다."
+  },
+  {
+    "question": "add_header 설정이 location 블록에서 적용되지 않는 경우, 그그 이유는?",
+    "options": [
+      "정규식 location 우선순위",
+      "응답 코드가 200이 아니기 때문",
+      "gzip 압축과 충돌",
+      "add_header는 if 블록에서만 적용",
+      "부모 블록에서 설정되어 override 불가"
+    ],
+    "answer": 1,
+    "explanation": "add_header는 기본적으로 200, 204, 301, 302 응답에만 적용됩니다."
+  },
+  {
+    "question": "여러 location 블록이 있는 경우 NGINX가 선택하는 기준은?",
+    "options": [
+      "정의 순서",
+      "정규 표현식이 우선",
+      "짧은 URI 우선",
+      "설정 파일 이름 우선",
+      "서버 이름"
+    ],
+    "answer": 1,
+    "explanation": "정규표현식 location (~, ~*)은 일반 prefix location보다 우선합니다."
+  },
+  {
+    "question": "클라이언트가 요청을 했지만 응답이 지연될 때 확인해야 할 항목은?",
+    "options": [
+      "리스닝 포트",
+      "gzip 설정",
+      "백엔드 서버 응답 시간",
+      "SSL 인증서 체인",
+      "에러 코드"
+    ],
+    "answer": 2,
+    "explanation": "응답 지연은 대개 백엔드 서버 성능 문제에서 기인합니다."
+  },
+  {
+    "question": "설정은 문제없는데 서비스가 시작되지 않는다면 SELinux 관련 항목으로 무엇을 점검해야 하나?",
+    "options": [
+      "서비스 포트",
+      "worker_processes 수",
+      "context type (예: httpd_sys_content_t)",
+      "gzip 설정 여부",
+      "upstream 이름"
+    ],
+    "answer": 2,
+    "explanation": "SELinux에서는 NGINX가 접근할 리소스에 대해 적절한 context type이 설정되어야 합니다."
+  },
+  {
+    "question": "SELinux 환경에서 HTTP 요청이 거부될 경우 확인할 명령은?",
+    "options": [
+      "ausearch -m avc -ts recent",
+      "ls -Z",
+      "위 모두",
+      "getenforce",
+      "해당 없음"
+    ],
+    "answer": 2,
+    "explanation": "SELinux 트러블슈팅 시 context 확인 및 거부 로그 확인이 필수입니다."
+  },
+  {
+    "question": "HTTPS 연결 시 \"ERR_CERT_DATE_INVALID\" 오류가 발생한 경우는?",
+    "options": [
+      "포트 충돌",
+      "DNS 설정 문제",
+      "인증서 유효기간 만료",
+      "gzip 설정 누락",
+      "캐시 만료"
+    ],
+    "answer": 2,
+    "explanation": "인증서 유효기간이 만료되었을 경우 이 오류가 나타납니다."
+  },
+  {
+    "question": "클라이언트가 \"SSL handshake failed\" 메시지를 출력할 때 점검해야 할 것은?",
+    "options": [
+      "listen 포트",
+      "캐시 경로",
+      "인증서 및 키 쌍의 유효성",
+      "gzip 여부",
+      "로깅 수준"
+    ],
+    "answer": 2,
+    "explanation": "인증서 및 키가 잘못되면 TLS 핸드셰이크 실패가 발생합니다."
+  },
+  {
+    "question": "TLS 설정에서 ssl_verify_client를 on으로 설정했을 때 예상되는 결과는?",
+    "options": [
+      "서버 인증 생략",
+      "클라이언트 인증 생략",
+      "클라이언트 인증서가 없으면 연결 거부",
+      "gzip 자동 활성화",
+      "프록시 로깅 중단"
+    ],
+    "answer": 2,
+    "explanation": "ssl_verify_client on은 클라이언트 인증서를 강제하여 없으면 연결을 거부합니다."
+  },
+  {
+    "question": "인증서가 PEM 형식이 아닐 경우 발생 가능한 문제는?",
+    "options": [
+      "접근 로그 누락",
+      "gzip 미적용",
+      "서버 자동 종료",
+      "TLS 연결 실패",
+      "요청 URI 재정의"
+    ],
+    "answer": 3,
+    "explanation": "NGINX는 PEM 형식 인증서를 요구하므로, 아닐 경우 TLS 연결이 실패합니다."
+  },
+  {
+    "question": "ssl_certificate와 ssl_certificate_key 경로가 잘못되었을 경우 발생하는 현상은?",
+    "options": [
+      "HTTP 요청으로 대체됨",
+      "gzip 오류 발생",
+      "캐시 무효화",
+      "TLS 핸드셰이크 실패",
+      "DNS 재전파"
+    ],
+    "answer": 3,
+    "explanation": "TLS에 필요한 파일이 없으면 연결 자체가 실패합니다."
+  },
+  {
+    "question": "HTTPS 접속 시 ERR_CERT_COMMON_NAME_INVALID 오류가 발생하는 원인은?",
+    "options": [
+      "클라이언트 IP 차단",
+      "gzip 설정 누락",
+      "DNS 루프",
+      "인증서의 Common Name이 요청한 도메인과 불일치",
+      "SELinux 설정 부족"
+    ],
+    "answer": 3,
+    "explanation": "인증서 CN(Common Name) 또는 SAN이 요청 도메인과 불일치하면 이 오류가 납니다."
+  },
+  {
+    "question": "ssl_certificate 파일 경로가 잘못되었을 때 설정 적용 시 나타나는 오류는?",
+    "options": [
+      "403 Forbidden",
+      "404 Not Found",
+      "gzip 압축 오류",
+      "NGINX 재시작 실패 및 error.log에 파일 경로 오류",
+      "연결 유지 실패"
+    ],
+    "answer": 3,
+    "explanation": "인증서 경로 오류가 있으면 NGINX 로드시 에러가 발생하며 시작이 실패할 수 있습니다."
+  },
+  {
+    "question": "클라이언트 측에서 TLS 연결 시도 후 \"unknown CA\" 오류가 발생한다면?",
+    "options": [
+      "서버의 공개키가 누락됨",
+      "서버가 gzip을 비활성화함",
+      "포트 바인딩 실패",
+      "인증서 서명자가 신뢰되지 않음",
+      "접속 제한 시간 초과"
+    ],
+    "answer": 3,
+    "explanation": "클라이언트는 신뢰하는 루트CA로 서명되지 않은 인증서를 unknown CA로 처리합니다."
+  },
+  {
+    "question": "TLS 설정 변경 후 테스트를 위한 명령으로 적절한 것은?",
+    "options": [
+      "curl -k https://example.com",
+      "wget -qO- http://localhost",
+      "dig example.com A",
+      "openssl s_client -connect example.com:443",
+      "ping example.com"
+    ],
+    "answer": 3,
+    "explanation": "openssl s_client -connect ... 명령을 통해 TLS 연결 디버깅 및 인증서를 확인할 수 있습니다."
+  },
+  {
+    "question": "다음 중 NGINX에서 클라이언트 접속 문제를 디버깅할 때 가장 유용한 로그는?",
+    "options": [
+      "boot.log",
+      "/etc/nginx/mime.types",
+      "yum.log",
+      "/proc/cpuinfo",
+      "/var/log/nginx/access.log"
+    ],
+    "answer": 4,
+    "explanation": "access.log에는 요청된 URI, 클라이언트 IP, 응답 시간, 상태 코드 등이 기록됩니다."
+  },
+  {
+    "question": "HTTP 상태 코드 504는 무엇을 의미하는가?",
+    "options": [
+      "서버 응답 없음",
+      "DNS 해결 실패",
+      "요청 본문 형식 오류",
+      "인증 실패",
+      "게이트웨이 타임아웃 (백엔드 응답 지연)"
+    ],
+    "answer": 4,
+    "explanation": "504 Gateway Timeout은 백엔드 서버가 정해진 시간 내 응답을 하지 않았음을 의미합니다."
+  },
+  {
+    "question": "다중 server 블록에서 요청이 의도한 블록이 아닌 다른 블록으로 전달된다면 가장 먼저 점검할 설정은?",
+    "options": [
+      "listen 포트",
+      "location 블록 개수",
+      "proxy_set_header",
+      "access_log 경로",
+      "server_name 정확도 및 default_server 지정 여부"
+    ],
+    "answer": 4,
+    "explanation": "정확한 도메인 매칭이 되지 않으면 default_server가 요청을 처리할 수 있습니다."
+  },
+  {
+    "question": "NGINX가 실행 중인 것처럼 보이지만 실제 요청이 응답되지 않는다면 우선적으로 점검할 항목은?",
+    "options": [
+      "로깅 포맷",
+      "gzip 상태",
+      "정적 파일 수",
+      "mime.types 설정",
+      "방화벽 상태 및 포트 열림 여부"
+    ],
+    "answer": 4,
+    "explanation": "서비스가 실행 중이라도 방화벽에서 포트를 차단하고 있다면 외부 접속은 차단됩니다."
+  },
+  {
+    "question": "다음 중 nginx -T 명령의 주요 기능은?",
+    "options": [
+      "PID 재설정",
+      "프로세스 상태 표시",
+      "SSL 재시작",
+      "백엔드 서버 헬스체크",
+      "설정 파일 전체 병합 내용 출력"
+    ],
+    "answer": 4,
+    "explanation": "-T는 병합된 전체 설정을 출력하여 디버깅 및 설정 확인 시 유용합니다."
+  },
+  {
+    "question": "다음 중 NGINX 구동 실패 시 가장 먼저 확인해야 하는 파일은?",
+    "options": [
+      "/etc/hosts",
+      "/etc/nginx/mime.types",
+      "/var/run/nginx.pid",
+      "/etc/shadow",
+      "/var/log/nginx/error.log"
+    ],
+    "answer": 4,
+    "explanation": "구동 실패 원인은 error.log에 가장 상세하게 기록됩니다."
+  }
+]
 }
 
 # 퀴즈 정보 조회 함수들은 변경 없이 그대로 유지
