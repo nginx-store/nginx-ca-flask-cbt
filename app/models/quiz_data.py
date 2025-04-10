@@ -617,7 +617,7 @@ quiz_data = {
       "요청을 백업 서버로 전달",
       "연결 재사용을 통한 성능 향상",
       "캐시 무효화 설정",
-      "SSL 종료 처리"
+      "SSL Termination 처리"
     ],
     "answer": 2,
     "explanation": "keepalive는 백엔드와의 연결을 재사용하여 성능을 향상시키고 리소스를 절약합니다."
@@ -732,367 +732,367 @@ quiz_data = {
   }
     ],
     "F5N3": [
-          {
-            "question": "nginx -s stop 명령이 수행하는 작업은?",
-            "options": [
-              "마스터 및 워커 프로세스를 정상 종료",
-              "설정 파일을 테스트하고 적용",
-              "설정을 리로드",
-              "NGINX를 비정상 종료",
-              "워커 프로세스만 종료"
-            ],
-            "answer": 0,
-            "explanation": ""
-          },
-          {
-            "question": "설정을 적용하기 전에 문법 오류가 있는지 확인하려면 어떤 명령을 사용해야 하는가?",
-            "options": [
-              "nginx -t",
-              "nginx --check",
-              "nginx -s test",
-              "nginx configtest",
-              "nginx -c"
-            ],
-            "answer": 0,
-            "explanation": ""
-          },
-          {
-            "question": "kill -HUP <nginx pid> 시그널의 효과는?",
-            "options": [
-              "설정을 다시 로드",
-              "NGINX 프로세스 강제 종료",
-              "NGINX 완전 재시작",
-              "에러 로그 초기화",
-              "리스닝 포트 변경"
-            ],
-            "answer": 0,
-            "explanation": ""
-          },
-          {
-            "question": "nginx -s reload와 nginx -s stop && nginx의 주요 차이는?",
-            "options": [
-              "후자는 다운타임이 발생함",
-              "로그 디렉토리를 다르게 사용",
-              "SSL 핸드셰이크 차이",
-              "전자는 PID를 변경함",
-              "둘 다 완전한 재시작"
-            ],
-            "answer": 0,
-            "explanation": ""
-          },
-          {
-            "question": "NGINX를 수동으로 종료하려면 어떤 명령이 가장 적절한가?",
-            "options": [
-              "systemctl stop nginx",
-              "nginx --exit",
-              "nginx -s restart",
-              "nginx -z",
-              "nginx -s kill"
-            ],
-            "answer": 0,
-            "explanation": ""
-          },
-          {
-            "question": "403 Forbidden 오류의 일반적인 원인은?",
-            "options": [
-              "파일 권한 부족",
-              "프록시 백엔드 연결 실패",
-              "gzip 설정 오류",
-              "인증서 만료",
-              "서버 이름 불일치"
-            ],
-            "answer": 0,
-            "explanation": ""
-          },
-          {
-            "question": "HTTP 502 Bad Gateway 오류의 원인은?",
-            "options": [
-              "설정 파일에 문법 오류",
-              "백엔드 서버 미응답",
-              "TLS 핸드셰이크 실패",
-              "파일이 존재하지 않음",
-              "리스닝 포트 누락"
-            ],
-            "answer": 1,
-            "explanation": ""
-          },
-          {
-            "question": "access.log에서 $status가 499인 의미는?",
-            "options": [
-              "요청이 정상적으로 완료됨",
-              "클라이언트가 연결을 중단함",
-              "서버 에러 발생",
-              "캐시에서 응답",
-              "SSL 핸드셰이크 실패"
-            ],
-            "answer": 1,
-            "explanation": ""
-          },
-          {
-            "question": "NGINX 시작 시 \"bind() to 0.0.0.0:80 failed\" 에러가 발생했다면?",
-            "options": [
-              "인증서가 만료됨",
-              "포트가 이미 사용 중임",
-              "gzip 설정 누락",
-              "루트 디렉토리 오류",
-              "PID 파일이 없음"
-            ],
-            "answer": 1,
-            "explanation": ""
-          },
-          {
-            "question": "복수의 가상 호스트에서 동일한 포트를 사용할 경우 충돌을 방지하려면?",
-            "options": [
-              "listen 포트를 다르게 설정",
-              "(하나의) server 블록만 default_server로 지정하고, 나머지는 server_name을 정확히 설정",
-              "SSL 설정을 모두 비활성화",
-              "access_log를 공통으로 지정",
-              "error_log를 주석 처리"
-            ],
-            "answer": 1,
-            "explanation": ""
-          },
-          {
-            "question": "add_header 설정이 location 블록에서 적용되지 않는 이유는?",
-            "options": [
-              "정규식 location 우선순위",
-              "응답 코드가 200이 아니기 때문",
-              "gzip 압축과 충돌",
-              "add_header는 if 블록에서만 적용",
-              "부모 블록에서 설정되어 override 불가"
-            ],
-            "answer": 1,
-            "explanation": ""
-          },
-          {
-            "question": "여러 location 블록이 있는 경우 NGINX가 선택하는 기준은?",
-            "options": [
-              "정의 순서",
-              "정규 표현식이 우선",
-              "짧은 URI 우선",
-              "설정 파일 이름 우선",
-              "서버 이름"
-            ],
-            "answer": 1,
-            "explanation": ""
-          },
-          {
-            "question": "클라이언트가 요청을 했지만 응답이 지연될 때 확인해야 할 항목은?",
-            "options": [
-              "리스닝 포트",
-              "gzip 설정",
-              "백엔드 서버 응답 시간",
-              "SSL 인증서 체인",
-              "에러 코드"
-            ],
-            "answer": 2,
-            "explanation": ""
-          },
-          {
-            "question": "설정은 문제없는데 서비스가 시작되지 않는다면 SELinux 관련 항목으로 무엇을 점검해야 하나?",
-            "options": [
-              "서비스 포트",
-              "worker_processes 수",
-              "context type (예: httpd_sys_content_t)",
-              "gzip 설정 여부",
-              "upstream 이름"
-            ],
-            "answer": 2,
-            "explanation": ""
-          },
-          {
-            "question": "SELinux 환경에서 HTTP 요청이 거부될 경우 확인할 명령은?",
-            "options": [
-              "ausearch -m avc -ts recent",
-              "ls -Z",
-              "위 모두",
-              "getenforce",
-              "해당 없음"
-            ],
-            "answer": 2,
-            "explanation": ""
-          },
-          {
-            "question": "HTTPS 연결 시 “ERR_CERT_DATE_INVALID” 오류가 발생한 경우는?",
-            "options": [
-              "포트 충돌",
-              "DNS 설정 문제",
-              "인증서 유효기간 만료",
-              "gzip 설정 누락",
-              "캐시 만료"
-            ],
-            "answer": 2,
-            "explanation": ""
-          },
-          {
-            "question": "클라이언트가 \"SSL handshake failed\" 메시지를 출력할 때 점검해야 할 것은?",
-            "options": [
-              "listen 포트",
-              "캐시 경로",
-              "인증서 및 키 쌍의 유효성",
-              "gzip 여부",
-              "로깅 수준"
-            ],
-            "answer": 2,
-            "explanation": ""
-          },
-          {
-            "question": "TLS 설정에서 ssl_verify_client를 on으로 설정했을 때 예상되는 결과는?",
-            "options": [
-              "서버 인증 생략",
-              "클라이언트 인증 생략",
-              "클라이언트 인증서가 없으면 연결 거부",
-              "gzip 자동 활성화",
-              "프록시 로깅 중단"
-            ],
-            "answer": 2,
-            "explanation": ""
-          },
-          {
-            "question": "인증서가 PEM 형식이 아닐 경우 발생 가능한 문제는?",
-            "options": [
-              "접근 로그 누락",
-              "gzip 미적용",
-              "서버 자동 종료",
-              "TLS 연결 실패",
-              "요청 URI 재정의"
-            ],
-            "answer": 3,
-            "explanation": ""
-          },
-          {
-            "question": "ssl_certificate와 ssl_certificate_key 경로가 잘못되었을 경우 발생하는 현상은?",
-            "options": [
-              "HTTP 요청으로 대체됨",
-              "gzip 오류 발생",
-              "캐시 무효화",
-              "TLS 핸드셰이크 실패",
-              "DNS 재전파"
-            ],
-            "answer": 3,
-            "explanation": ""
-          },
-          {
-            "question": "HTTPS 접속 시 ERR_CERT_COMMON_NAME_INVALID 오류가 발생하는 원인은?",
-            "options": [
-              "클라이언트 IP 차단",
-              "gzip 설정 누락",
-              "DNS 루프",
-              "인증서의 Common Name이 요청한 도메인과 불일치",
-              "SELinux 설정 부족"
-            ],
-            "answer": 3,
-            "explanation": ""
-          },
-          {
-            "question": "ssl_certificate 파일 경로가 잘못되었을 때 설정 적용 시 나타나는 오류는?",
-            "options": [
-              "403 Forbidden",
-              "404 Not Found",
-              "gzip 압축 오류",
-              "NGINX 재시작 실패 및 error.log에 파일 경로 오류",
-              "연결 유지 실패"
-            ],
-            "answer": 3,
-            "explanation": ""
-          },
-          {
-            "question": "클라이언트 측에서 TLS 연결 시도 후 “unknown CA” 오류가 발생한다면?",
-            "options": [
-              "서버의 공개키가 누락됨",
-              "서버가 gzip을 비활성화함",
-              "포트 바인딩 실패",
-              "인증서 서명자가 신뢰되지 않음",
-              "접속 제한 시간 초과"
-            ],
-            "answer": 3,
-            "explanation": ""
-          },
-          {
-            "question": "TLS 설정 변경 후 테스트를 위한 명령으로 적절한 것은?",
-            "options": [
-              "curl -k https://example.com",
-              "wget -qO- http://localhost",
-              "dig example.com A",
-              "openssl s_client -connect example.com:443",
-              "ping example.com"
-            ],
-            "answer": 3,
-            "explanation": ""
-          },
-          {
-            "question": "다음 중 NGINX에서 클라이언트 접속 문제를 디버깅할 때 가장 유용한 로그는?",
-            "options": [
-              "boot.log",
-              "/etc/nginx/mime.types",
-              "yum.log",
-              "/proc/cpuinfo",
-              "/var/log/nginx/access.log"
-            ],
-            "answer": 4,
-            "explanation": ""
-          },
-          {
-            "question": "HTTP 상태 코드 504는 무엇을 의미하는가?",
-            "options": [
-              "서버 응답 없음",
-              "DNS 해결 실패",
-              "요청 본문 형식 오류",
-              "인증 실패",
-              "게이트웨이 타임아웃 (백엔드 응답 지연)"
-            ],
-            "answer": 4,
-            "explanation": ""
-          },
-          {
-            "question": "다중 server 블록에서 요청이 의도한 블록이 아닌 다른 블록으로 전달된다면 가장 먼저 점검할 설정은?",
-            "options": [
-              "listen 포트",
-              "location 블록 개수",
-              "proxy_set_header",
-              "access_log 경로",
-              "server_name 정확도 및 default_server 지정 여부"
-            ],
-            "answer": 4,
-            "explanation": ""
-          },
-          {
-            "question": "NGINX가 실행 중인 것처럼 보이지만 실제 요청이 응답되지 않는다면 우선적으로 점검할 항목은?",
-            "options": [
-              "로깅 포맷",
-              "gzip 상태",
-              "정적 파일 수",
-              "mime.types 설정",
-              "방화벽 상태 및 포트 열림 여부"
-            ],
-            "answer": 4,
-            "explanation": ""
-          },
-          {
-            "question": "다음 중 nginx -T 명령의 주요 기능은?",
-            "options": [
-              "PID 재설정",
-              "프로세스 상태 표시",
-              "SSL 재시작",
-              "백엔드 서버 헬스체크",
-              "설정 파일 전체 병합 내용 출력"
-            ],
-            "answer": 4,
-            "explanation": ""
-          },
-          {
-            "question": "다음 중 NGINX 구동 실패 시 가장 먼저 확인해야 하는 파일은?",
-            "options": [
-              "/etc/hosts",
-              "/etc/nginx/mime.types",
-              "/var/run/nginx.pid",
-              "/etc/shadow",
-              "/var/log/nginx/error.log"
-            ],
-            "answer": 4,
-            "explanation": ""
-          }
+  {
+    "question": "Rate limiting(속도 제한)과 Bandwidth throttling(대역폭 제한)의 주요 차이는 무엇인가?",
+    "options": [
+      "Rate limiting은 일정 시간당 요청 횟수를 제한하고, Bandwidth throttling은 전송되는 데이터 속도를 제한한다",
+      "둘 다 전송 파일 형식을 지정하는 데 사용된다",
+      "둘 다 특정 디렉터리 접근을 막는 기능이다",
+      "둘 다 SSL 인증서 암호화 설정이다",
+      "둘 다 SELinux에서만 동작하는 기능이다"
     ],
+    "answer": 0,
+    "explanation": "Rate limiting은 시간당 요청 횟수 제한, Bandwidth throttling은 전송 속도/대역폭 자체를 제한한다."
+  },
+  {
+    "question": "NGINX에서 요청 횟수를 제한하기 위해 주로 사용하는 디렉티브는?",
+    "options": [
+      "limit_req_zone",
+      "limit_rate_after",
+      "autoindex",
+      "gzip_static",
+      "tcp_nodelay"
+    ],
+    "answer": 0,
+    "explanation": "limit_req_zone 지시어는 요청 수(rate)를 제한하기 위한 Zone(메모리 영역) 설정에 사용된다."
+  },
+  {
+    "question": "NGINX에서 limit_conn_zone 지시어는 어떤 기능을 제공하는가?",
+    "options": [
+      "연결(Connection) 수를 제한하는 데 필요한 공유 메모리 영역을 정의한다",
+      "로그 포맷을 정의한다",
+      "SSL 프로토콜을 설정한다",
+      "HTTP 응답 본문을 압축한다",
+      "IP 주소를 차단한다"
+    ],
+    "answer": 0,
+    "explanation": "limit_conn_zone은 동시 연결 수를 제한하기 위한 shared memory 영역을 정의하는 지시어다."
+  },
+  {
+    "question": "sendfile 지시어를 on으로 설정하면 대역폭과 성능에 어떤 영향이 있는가?",
+    "options": [
+      "커널 수준에서 파일 전송을 최적화하여 성능이 향상된다",
+      "TLS 암호화를 자동 활성화한다",
+      "서버 트래픽이 모두 차단된다",
+      "대역폭이 임의로 50%로 줄어든다",
+      "오류 로그가 자동으로 비활성화된다"
+    ],
+    "answer": 0,
+    "explanation": "sendfile on은 OS의 커널 버퍼를 활용하여 파일 전송 성능을 높이며 CPU 부하를 줄인다."
+  },
+  {
+    "question": "NGINX에서 keepalive를 활성화할 때 얻을 수 있는 주된 이점은?",
+    "options": [
+      "연결 재사용으로 인해 CPU 및 네트워크 부하가 줄어든다",
+      "HTTP/2 프로토콜을 비활성화할 수 있다",
+      "각 요청마다 새 연결을 맺으므로 보안성이 높아진다",
+      "정적 파일에만 적용 가능하다",
+      "인증서 자동 갱신이 이루어진다"
+    ],
+    "answer": 0,
+    "explanation": "keepalive는 연결을 재사용하여 매 요청마다 핸드셰이크를 하지 않게 하므로 성능 및 자원 효율이 좋아진다."
+  },
+  {
+    "question": "keepalive_timeout 지시어는 어떤 역할을 하는가?",
+    "options": [
+      "유휴 연결이 끊기기 전까지의 대기 시간을 설정",
+      "HTTP 헤더를 추가하는 역할",
+      "SSL 핸드셰이크 시간을 무제한으로 늘려줌",
+      "request 메서드를 GET만 허용",
+      "로그 파일의 최대 크기를 결정"
+    ],
+    "answer": 0,
+    "explanation": "keepalive_timeout은 클라이언트와의 유휴 연결을 얼마나 오래 유지할지(초 단위) 설정한다."
+  },
+  {
+    "question": "deny all; 지시어가 하는 역할은 무엇인가?",
+    "options": [
+      "해당 블록 내 모든 요청을 차단",
+      "기본 인증(Basic Auth) 설정",
+      "특정 디렉터리에만 접근 허용",
+      "gzip 압축을 해제",
+      "HTTPS로 리디렉션"
+    ],
+    "answer": 0,
+    "explanation": "deny all;은 설정된 컨텍스트(location/서버/HTTP)에서 모든 접근을 막는다."
+  },
+  {
+    "question": "IP 주소 기반 접근 제어 시, allow 192.168.0.0/24; 뒤에 deny all; 지시어를 두는 이유는?",
+    "options": [
+      "특정 IP 대역을 허용하고 나머지는 차단하기 위해 허용 규칙 다음에 전체 차단 규칙을 두는 방식",
+      "deny all;을 먼저 써야 접근이 모두 가능해진다",
+      "설정 순서가 바뀌면 오류가 발생한다",
+      "gzip 설정을 무효화하기 위해서",
+      "SSL 설정이 중복될 수 있기 때문"
+    ],
+    "answer": 0,
+    "explanation": "IP 기반 접근 제어 시, 먼저 허용할 IP를 지정한 후, 나머지를 전부 deny all;로 막는다."
+  },
+  {
+    "question": "HTTP 메서드를 기반으로 접근을 제한하려면 어떤 방법을 사용할 수 있는가?",
+    "options": [
+      "if ($request_method) { ... } 같은 조건문 활용",
+      "limit_conn_zone 지시어",
+      "map 블록에서 메서드별 매핑",
+      "log_format directive",
+      "charset utf-8;"
+    ],
+    "answer": 0,
+    "explanation": "HTTP 메서드 제한은 통상 if 또는 try_files 내 조건 등으로 허용/차단 로직을 작성할 수 있다."
+  },
+  {
+    "question": "Basic 인증 설정 시 필요한 주요 지시어는 무엇인가?",
+    "options": [
+      "auth_basic, auth_basic_user_file",
+      "proxy_cache, proxy_cache_valid",
+      "rewrite, return",
+      "root, index",
+      "ssl_ciphers, ssl_protocols"
+    ],
+    "answer": 0,
+    "explanation": "Basic Auth는 auth_basic(인증 메시지), auth_basic_user_file(인증 계정 DB)을 사용한다."
+  },
+  {
+    "question": "auth_request 지시어의 주요 목적은?",
+    "options": [
+      "SSL 인증서 자동 발급",
+      "HTTP/2 활성화",
+      "외부 인증 서버 또는 별도 위치의 인증 로직을 호출하기 위함",
+      "파일 업로드 제한",
+      "DNS 루프 방지"
+    ],
+    "answer": 2,
+    "explanation": "auth_request는 별도 서버/위치에서 인증 과정을 거치고, 그 결과를 사용해 접근 허용 여부를 결정한다."
+  },
+  {
+    "question": "특정 URI 예: /admin 만 접근을 제한하려면 어떻게 설정하는 것이 좋은가?",
+    "options": [
+      "location /admin { deny all; } 식으로 설정",
+      "server 블록 안에 admin.conf 파일을 include 한다",
+      "root 디렉터리를 admin 전용으로 분리한다",
+      "HTTP 메서드를 HEAD로 제한한다",
+      "다른 포트로 리스닝한다"
+    ],
+    "answer": 0,
+    "explanation": "location /admin { ... } 블록에 접근 허용/차단 지시어를 배치하면 특정 URI만 제한할 수 있다."
+  },
+  {
+    "question": "NGINX에서 access_log를 완전히 비활성화하려면 어떻게 해야 하는가?",
+    "options": [
+      "access_log off; 를 설정",
+      "log_format에 빈 값을 지정",
+      "error_log를 debug로 변경",
+      "include conf.d/access.conf",
+      "auth_basic_user_file /dev/null"
+    ],
+    "answer": 0,
+    "explanation": "access_log off; 를 설정하면 접근 로그가 기록되지 않는다."
+  },
+  {
+    "question": "오류 로그(error_log)와 접근 로그(access_log)의 차이는 무엇인가?",
+    "options": [
+      "error_log는 서버 오류·경고, access_log는 요청·응답 상태 등 일반 트래픽 정보",
+      "error_log는 쿠키 정보를 주로 기록하고, access_log는 헤더만 기록",
+      "error_log는 사용자 행동을 저장, access_log는 SSL 정보를 저장",
+      "둘 다 같은 내용을 다른 파일에 복제",
+      "둘 다 비활성화할 수 없다"
+    ],
+    "answer": 0,
+    "explanation": "error_log는 서버 상태나 에러 상황을, access_log는 클라이언트 요청/응답 내역을 기록한다."
+  },
+  {
+    "question": "log_format directive의 역할은 무엇인가?",
+    "options": [
+      "로그 출력 형식을 정의",
+      "SSL 인증서 파일 위치를 지정",
+      "gzip 압축 수준 설정",
+      "worker_processes 수 결정",
+      "listen 포트를 변경"
+    ],
+    "answer": 0,
+    "explanation": "log_format은 접근 로그에 포함될 항목과 형식을 정의하는 데 사용된다."
+  },
+  {
+    "question": "error_log 레벨을 debug로 설정하면 어떤 영향이 있는가?",
+    "options": [
+      "더 세부적인 디버그 정보가 기록되어 로그가 방대해질 수 있음",
+      "모든 로그가 즉시 삭제됨",
+      "오류 로그가 비활성화됨",
+      "SSL 인증서가 자동 발급됨",
+      "CPU 사용량이 0%가 됨"
+    ],
+    "answer": 0,
+    "explanation": "debug 레벨은 매우 상세한 정보를 기록하므로 로그 양이 많아지고 성능에 영향을 줄 수 있다."
+  },
+  {
+    "question": "access_log 경로를 /var/log/nginx/custom_access.log 로 바꾸려면 어떻게 해야 하는가?",
+    "options": [
+      "access_log /var/log/nginx/custom_access.log;",
+      "error_log /var/log/nginx/custom_access.log;",
+      "log_format custom /var/log/nginx/custom_access.log;",
+      "upstream_log /var/log/nginx/custom_access.log;",
+      "include custom_access.log;"
+    ],
+    "answer": 0,
+    "explanation": "access_log 명령 뒤에 원하는 파일 경로를 지정하면 된다."
+  },
+  {
+    "question": "error_log의 default 레벨(기본 레벨)은 무엇인가?",
+    "options": [
+      "error",
+      "emerg",
+      "debug",
+      "warn",
+      "notice"
+    ],
+    "answer": 0,
+    "explanation": "NGINX 기본 설정에서 error_log는 error 레벨 이상만 기록한다."
+  },
+  {
+    "question": "서버 인증서(server certificate)와 클라이언트 인증서(client certificate)의 차이는?",
+    "options": [
+      "서버 인증서는 서버를 증명, 클라이언트 인증서는 사용자를 증명",
+      "서버 인증서는 오직 HTTP/3에서만 사용, 클라이언트 인증서는 HTTP/1.1 전용",
+      "둘 다 NGINX가 자동 생성하므로 설정 불필요",
+      "서버 인증서는 SSH 연결용, 클라이언트 인증서는 FTP 연결용",
+      "둘 다 PEM 포맷을 사용할 수 없다"
+    ],
+    "answer": 0,
+    "explanation": "서버 인증서는 도메인이 진짜 서버임을 증명, 클라이언트 인증서는 사용자/클라이언트 신분을 증명한다."
+  },
+  {
+    "question": "SSL/TLS 인증서 설정 시 필수 요소가 아닌 것은?",
+    "options": [
+      "ssl_protocols",
+      "ssl_certificate",
+      "ssl_certificate_key",
+      "서명된 인증서 파일",
+      "upstream_resolver"
+    ],
+    "answer": 4,
+    "explanation": "ssl 설정에 resolver는 직접적인 필수가 아니다. ssl_certificate, ssl_certificate_key, 프로토콜, 인증서 파일이 기본."
+  },
+  {
+    "question": "ssl_certificate_key 파일 보호를 위해 권장되는 권한은?",
+    "options": [
+      "400 또는 600",
+      "777",
+      "644",
+      "555",
+      "750"
+    ],
+    "answer": 0,
+    "explanation": "개인 키 파일 보호를 위해 root만 읽을 수 있도록 400 또는 600 권장을 많이 한다."
+  },
+  {
+    "question": "Self-signed 인증서와 CA-signed 인증서의 차이는?",
+    "options": [
+      "Self-signed는 자체 서명, CA-signed는 공인 기관이 서명하여 신뢰성이 높음",
+      "Self-signed는 무료, CA-signed는 PEM 형식을 사용하지 못함",
+      "둘 다 브라우저에서 항상 신뢰됨",
+      "CA-signed는 HTTPS가 불가능",
+      "Self-signed는 무조건 유효기간이 1년 이하"
+    ],
+    "answer": 0,
+    "explanation": "Self-signed는 사용자가 직접 서명한 인증서, CA-signed는 신뢰할 수 있는 인증기관(CA) 서명으로 브라우저에서 신뢰도가 높다."
+  },
+  {
+    "question": "ssl_stapling(OCSP Stapling)을 사용하는 주요 목적은?",
+    "options": [
+      "OCSP 요청을 서버가 미리 대신 수행해 클라이언트가 별도 인증서 검증 요청을 보내지 않도록 함",
+      "서버의 인증서 유효성 검사를 클라이언트가 대신 해주기 위함",
+      "log_format을 커스터마이징하기 위함",
+      "SSL 키 길이를 반으로 줄이기 위함",
+      "HSTS를 비활성화하기 위함"
+    ],
+    "answer": 0,
+    "explanation": "OCSP Stapling은 서버가 CA에 미리 OCSP 확인을 해두어 클라이언트 측의 검증 과정을 줄인다."
+  },
+  {
+    "question": "ssl_verify_client on; 설정 시 기대되는 동작은?",
+    "options": [
+      "클라이언트 인증서가 없으면 연결 거부",
+      "서버가 클라이언트 인증서 없이도 항상 통과",
+      "접근 로그가 비활성화",
+      "TLS 1.0만 활성화됨",
+      "gzip 설정이 무효화됨"
+    ],
+    "answer": 0,
+    "explanation": "ssl_verify_client on은 클라이언트 인증을 강제하여, 인증서가 없거나 부적합하면 연결을 거부한다."
+  },
+  {
+    "question": "TLS Termination(종료), End-to-End Encryption(종단 간 암호화), TLS Passthrough 중, TLS Termination의 장점은?",
+    "options": [
+      "리버스 프록시에서 암호해독을 한 번만 수행, 백엔드 서버는 평문 통신 가능해 리소스 절약",
+      "클라이언트-서버 간 데이터를 전혀 암호화하지 않는다",
+      "서버가 인증서를 요구하지 않는다",
+      "클라이언트와 백엔드 간에 서로 다른 포트 사용을 강제",
+      "IP 주소 기반 접근제어가 불가능"
+    ],
+    "answer": 0,
+    "explanation": "TLS Termination은 프록시(프론트엔드)에서 암복호화를 끝내고, 백엔드는 평문 처리로 부하를 줄일 수 있다."
+  },
+  {
+    "question": "server 블록에서 listen 443 ssl; 설정 시 필수로 필요한 인증서 관련 설정은?",
+    "options": [
+      "ssl_certificate와 ssl_certificate_key",
+      "ssl_stapling_only",
+      "ssl_protocols TLSv1.0",
+      "ssl_ciphers RC4",
+      "ssl_verify_client off"
+    ],
+    "answer": 0,
+    "explanation": "HTTPS(SSL) 포트 443을 사용하는 경우 인증서와 개인키 설정이 필수다."
+  },
+  {
+    "question": "TLS 1.0, 1.1을 비활성화하고 TLS 1.2 이상만 허용하려면 어떤 지시어를 사용해야 하는가?",
+    "options": [
+      "ssl_protocols",
+      "ssl_verify_depth",
+      "ssl_dhparam",
+      "limit_conn_zone",
+      "map $https $tls_version"
+    ],
+    "answer": 0,
+    "explanation": "ssl_protocols TLSv1.2 TLSv1.3; 처럼 설정하여 1.0/1.1을 비활성화할 수 있다."
+  },
+  {
+    "question": "모든 HTTP 요청을 HTTPS로 리디렉션하는 가장 간단한 방법은?",
+    "options": [
+      "listen 80; server_name _; return 301 https://$host$request_uri;",
+      "limit_req_zone 키워드를 사용",
+      "add_header X-Redirect https;",
+      "resolver 8.8.8.8 valid=300;",
+      "gzip on; proxy_ssl_verify off;"
+    ],
+    "answer": 0,
+    "explanation": "일반적으로 80 포트 server 블록에서 return 301 또는 302로 HTTPS 도메인으로 리디렉션한다."
+  },
+  {
+    "question": "ssl_ciphers 지시어는 무엇을 정의하는가?",
+    "options": [
+      "사용할 암호화 알고리즘(암호군) 목록",
+      "DH 파라미터 파일 위치",
+      "SSL 키 파일을 저장하는 디렉터리",
+      "TLS 세션이 만료되는 시간",
+      "DNS 쿼리 우선순위"
+    ],
+    "answer": 0,
+    "explanation": "ssl_ciphers는 어떤 암호화 스위트를 사용할지 정의한다."
+  },
+  {
+    "question": "ssl_protocols TLSv1.3; 만 남기는 설정의 효과는?",
+    "options": [
+      "오래된 클라이언트(예: TLSv1.2 이하 지원)와 호환되지 않을 수 있음",
+      "인증서가 자동 갱신됨",
+      "Basic Auth가 비활성화됨",
+      "모든 HTTP 요청을 차단",
+      "gzip 압축을 무조건 적용"
+    ],
+    "answer": 0,
+    "explanation": "TLSv1.3만 활성화하면 최신 암호화 기능을 사용하지만, 구형 클라이언트와 호환성이 떨어질 수 있다."
+  }
+],
     "F5N4": [
   {
     "question": "nginx -s stop 명령이 수행하는 작업은?",
